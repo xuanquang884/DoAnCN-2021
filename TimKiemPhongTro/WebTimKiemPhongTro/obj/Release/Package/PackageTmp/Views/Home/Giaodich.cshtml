@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebTimKiemPhongTro.Models.GiaoDich>
+
+@{
+    ViewBag.Title = "Giaodich";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="blog-lst col-md-12 pl0">
+            <div style="min-height:500px" class="blog-lst col-md-12 pl0">
+
+                <nav aria-label="breadcrumb padding-top-40">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("home","Home")">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Ví tiền</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Lịch sử giao dịch</li>
+                    </ol>
+                </nav>
+                <h2>Lịch sử  giao dịch thành công</h2>
+                <table class="table table_banggia table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" width="30%">
+                                Tiêu Đề
+                            </th>
+                            <th class="text-center" width="30%">
+                                Người Đăng
+                            </th>
+                            <th class="text-center" width="30%">
+                                Số Tiền Thanh Toán
+                            </th>
+                            <th class="text-center" width="30%">
+                                Ngày Đăng
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinDang.TieuDe)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center">
+                    @Html.FormatValue(item.SoTien, "{0:#,###}") VND
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ThoiGian)
+                </td>
+
+            </tr>}
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+</div>
+
+           

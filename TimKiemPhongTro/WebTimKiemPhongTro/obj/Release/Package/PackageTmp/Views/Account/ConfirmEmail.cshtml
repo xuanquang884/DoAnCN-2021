@@ -1,0 +1,16 @@
+﻿@{ ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";}
+
+<div class="container">
+    <div class="row">
+        <div>
+            <p>
+                Thank you for confirming your email. Please @Html.ActionLink("Nhấn vào đây để đăng nhập!", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            </p>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

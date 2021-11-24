@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebTimKiemPhongTro.Models.Loai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoUutien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoUutien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonGia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaLoai }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaLoai }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaLoai })
+        </td>
+    </tr>
+}
+
+</table>

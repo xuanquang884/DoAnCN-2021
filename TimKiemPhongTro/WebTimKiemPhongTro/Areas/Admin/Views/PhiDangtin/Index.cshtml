@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebTimKiemPhongTro.Models.Loai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
+}
+
+<h2 style="text-align:center; margin-top: 20px"><b>PHÍ ĐĂNG TIN</b></h2>
+
+<p>
+    <button type="button" class="btn btn-default" style="color: #ffffff; background: #00aecd94; box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); padding: 0.5em 1em; display: inline-block; margin: 0.5em 0;">@Html.ActionLink("Tạo mới", "Create")</button>
+</p>
+
+@Styles.Render("~/Content/Giaodich.css")
+<div class="container">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="card-actions float-right">
+                            <div class="dropdown show">
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Loại phí đăng tin</th>
+                                    <th>Độ ưu tiên</th>
+                                    <th>Đơn giá</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.TenLoai</td>
+                                        <td>@item.DoUutien</td>
+                                        <td>@Html.FormatValue(@item.DonGia, "{0:#,###}")</td>
+                                        <td>
+                                            <a class="text-danger" onclick="location.href='@Url.Action("Edit", "PhiDangtin", new { id = item.MaLoai})'"><i class="fas fa-pencil-alt"></i></a>
+                                            <a class="text-info" onclick="location.href='@Url.Action("Delete", "PhiDangtin", new { id = item.MaLoai })'"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model WebTimKiemPhongTro.Models.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+        <div class="col-md-6">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 login-blocks" style="margin-left: 45px">
+                 
+
+                    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <h4>Thông Tin Đăng Nhập</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                      
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                @Html.LabelFor(m => m.Email)
+
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                @Html.LabelFor(m => m.Name)
+
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                @Html.LabelFor(m => m.PhoneNumber)
+
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            
+                            <div style="margin-left: 320px">
+                                <button type="submit" class="btn btn-default"> Đăng Nhập</button>
+                            </div>
+                        </div>
+                    }
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="~/Content/assets/img/Logonhatro.jpg" style="height:550px; width: 700px " />
+        </div>
+    </div>
+</div>

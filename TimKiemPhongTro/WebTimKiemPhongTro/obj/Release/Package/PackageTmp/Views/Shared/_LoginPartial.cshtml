@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+        <ul class="main-nav nav navbar-nav navbar-right">
+            <li class="dropdown ymm-sw " style="margin-top:-10px">
+                    <a href="index.html" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">@User.Identity.GetUserName()<b class="caret"></b></a>
+                <ul class="dropdown-menu navbar-nav">
+                    <li class="wow fadeInDown" data-wow-delay="0.1s">
+                        <a href="/User/ProfileUser">Hồ sơ của tôi</a>
+                    </li>
+                    <li class="wow fadeInDown" data-wow-delay="0.1s">
+                        <a href="/User/Taisancuatoi">Tài sản của tôi</a>
+                    </li>
+                    <li class="wow fadeInDown" data-wow-delay="0.1s">
+                        <a href="/Manage/ChangePassword">Thay đổi mật khẩu</a>
+                    </li>
+                    <li class="wow fadeInDown" data-wow-delay="0.1s">
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Thoát</a>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin-top:-10px"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+<ul class="nav navbar-nav navbar-right">
+    <li style="  background-color: brown; border-radius: 10px; margin-left: 10px; ">@Html.ActionLink("Đăng Ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li style=" background-color: brown; border-radius: 10px; margin-left: 10px; ">@Html.ActionLink("Đăng Nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
+}

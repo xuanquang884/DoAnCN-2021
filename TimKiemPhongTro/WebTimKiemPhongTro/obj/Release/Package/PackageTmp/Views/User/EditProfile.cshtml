@@ -1,0 +1,166 @@
+﻿@model WebTimKiemPhongTro.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/basic.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+@using (Ajax.BeginForm("EditProfile", "User", new AjaxOptions() { HttpMethod = "POST" }, new { id = "frmTaskSave", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <body>
+        <!-- property area -->
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">
+            &nbsp;
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        <form action="" method="">
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>CHỈNH SỬA THÔNG TIN CÁ NHÂN</b><br>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+                                <div class="col-sm-3 col-sm-offset-1">
+                                    <div class="picture-container">
+                                        <div class="picture">
+                                            <img src="~/Content/assets/img/uploadimage/@Model.Image" class="picture-src" id="wizardPicturePreview" title="" />
+                                            <label class="sr-only" for="description">chon:</label>
+                                            <input type="file" name="file" id="Upimg" multiple><br><br>
+                                            @Html.HiddenFor(Model => Model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                        </div>
+                                        <h6>Choose Picture</h6>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 padding-top-25">
+
+                                    <div class="form-group">
+                                        <label>Họ và Tên: <small>(required)</small></label>
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>UserName <small>(required)</small></label>
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email: <small>(required)</small></label>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clear">
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>Facebook :</label>
+                                        @Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Twitter :</label>
+                                        @Html.EditorFor(model => model.Twitter, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Twitter, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Website :</label>
+                                        @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    @*<div class="form-group">
+            <label>Public email :</label>
+            <input name="p-email" type="email" class="form-control" placeholder="p-email@rmail.com">
+        </div>*@
+                                    <div class="form-group">
+                                        <label>Phone:</label>
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>FAX :</label>
+                                        @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.HiddenFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.HiddenFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.HiddenFor(model => model.ViTien, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ViTien, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-5 col-sm-offset-1">
+                                <br>
+                                <input type='submit' class='btn btn-finish btn-primary' name='finish' value='Save Change' />
+                                <button style="color: #FFF; background-color: #FDC600; border-color: #FDC600; border-radius: 1px; padding: 10px 20px; font-weight: 600; ">@Html.ActionLink("Cancel", "ProfileUser", new { id = Model.Id })</button>
+                            </div>
+                            <br>
+                        </form>
+
+                    </div>
+                </div><!-- end row -->
+            </div>
+        </div>
+    </body>
+}
+@section scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#frmTaskSave').submit(function (e) {
+            var fdata = new FormData($('#frmTaskSave').get(0));
+            var profilephoto = $('#Upimg').val();
+            fdata.append("Upimg", profilephoto);
+            var fileInput = document.getElementById('Upimg');
+            if (fileInput.files.length > 0) {
+                for (i = 0; i < fileInput.files.length; i++) {
+                    var sfilename = fileInput.files[i].name;
+                    let srandomid = Math.random().toString(36).substring(7);
+                    fdata.append(sfilename, fileInput.files[i]);
+                    var markup = "<tr id='" + srandomid + "'><td>" + sfilename + "</td><td><a href='#' onclick='DeleteFile(\"" + srandomid + "\",\"" + sfilename +
+                        "\")'><span class='glyphicon glyphicon-remove red'></span></a></td></tr>";
+                }
+                fdata.append('files', profilephoto);
+                var name = $('#Name').val();
+                if (name) {
+                    fdata.append("Name", name);
+                    fdata.append("Upimg", profilephoto);
+                    $.ajax({
+                        type: "Post",
+                        url: '@Url.Action("EditProfile", "User")',
+                        data: fdata,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            $("#myModal").html(data);
+                        }
+                    });
+                }
+            }
+        });
+    });
+    </script>
+}
+

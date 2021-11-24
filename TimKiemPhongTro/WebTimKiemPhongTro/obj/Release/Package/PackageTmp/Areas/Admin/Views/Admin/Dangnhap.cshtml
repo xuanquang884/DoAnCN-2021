@@ -1,0 +1,72 @@
+﻿@model  WebTimKiemPhongTro.Models.AccountAdmin
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/Content/css/style.css">
+
+</head>
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+                <body class="img js-fullheight" style="background-image: url(/Areas/Admin/Content/images/bg.jpg);">
+                    <section class="ftco-section">
+                        <div class="container">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 text-center mb-5">
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="login-wrap p-0">
+                                        <h3 class="mb-4 text-center">ĐĂNG NHẬP QUẢN TRỊ</h3>
+                                        <form action="#" class="signin-form">
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @Type = "password", @id = "password-field", @class = "form-control", @placeholder = "Mật Khẩu" } })
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                                @*<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
+                                                <span class="text-danger" style="color:antiquewhite !important;  margin-left: 10px;">
+                                                    @Html.DisplayFor(model => model.DangNhapThatBai)
+                                                </span>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="form-control btn btn-primary submit px-3">Đăng Nhập</button>
+                                            </div>
+                                            <div class="form-group d-md-flex">
+                                                <div class="w-50">
+                                                    <label class="checkbox-wrap checkbox-primary">
+                                                        Nhớ mật khẩu
+                                                        <input type="checkbox" checked>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <script src="~/Areas/Admin/Content/js/jquery.min.js"></script>
+                    <script src="~/Areas/Admin/Content/js/popper.js"></script>
+                    <script src="~/Areas/Admin/Content/js/bootstrap.min.js"></script>
+                    <script src="~/Areas/Admin/Content/js/main.js"></script>
+
+                </body>}
+</html>

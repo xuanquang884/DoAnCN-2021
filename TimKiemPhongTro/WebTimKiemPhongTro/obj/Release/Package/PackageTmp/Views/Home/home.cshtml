@@ -1,0 +1,176 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebTimKiemPhongTro.Models.TinDang>
+@{ ViewBag.Title = "home";
+                Layout = "~/Views/Shared/_LayoutMain.cshtml"; }
+
+<div class="slider-area">
+    <div class="slider">
+        <div id="bg-slider" class="owl-carousel owl-theme">
+
+            <div class="item"><img src="~/Content/assets/img/slide1/slide.jpg" alt="The Last of us"></div>
+            <div class="item"><img src="~/Content/assets/img/slide1/slider2.jpg" alt="GTA V"></div>
+
+        </div>
+    </div>
+    <div class="container slider-content">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home-lager-shearch" style="background-color: rgb(252, 252, 252); padding-top: 25px; margin-top: -125px;">
+    <div class="container">
+        <div class="col-md-12 large-search">
+            <div class="search-form wow pulse">
+                @using (Html.BeginForm("search", "Details", new { @class = "form-inline" }, FormMethod.Get))
+                {
+
+    <div class="col-md-12">
+        <div class="col-md-3">
+
+            <input type="text" name="SearchString" class="form-control" placeholder="Tìm Kiếm">
+        </div>
+        <div class="col-md-3">
+            <select id="lunchBegins" class="selectpicker Quan" name="Quan" data-live-search="true" data-live-search-style="begins" title="Quận">
+                <option>Quận 1</option>
+                <option>Quân 2</option>
+                <option>Gò Vấp</option>
+                <option>Bình Thạnh</option>
+                <option>Quận 9</option>
+                <option>Thủ Đức</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select id="basic" title="Loại" class="selectpicker show-tick form-control Loai" name="Loai">
+                <option>Phòng trọ</option>
+                <option>Nhà nguyên căn </option>
+                <option>Căn hộ</option>
+
+
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select id="basic" title="Giá" class="selectpicker show-tick form-control Gia" name="Gia">
+                <option value="1000000">1.000.000</option>
+                <option value="1500000">1.500.000</option>
+                <option value="2500000">2.500.000</option>
+                <option value="3000000">3.000.000</option>
+                <option value="4000000">4.000.000</option>
+                <option value="5500000">5.500.000</option>
+                <option value="6000000">6.000.000</option>
+                <option value="7500000">7.500.000</option>
+
+
+            </select>
+        </div>
+    </div>
+
+                    <div class="center">
+                        <input type="submit" value="" class="btn btn-default btn-lg-sheach">
+                    </div>}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- property area -->
+<div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12  padding-top-40 properties-page">
+                <div class="col-md-12 ">
+                    <div class="col-xs-10 page-subheader sorting pl0">
+                    </div>
+                </div>
+                @helper truncate(String input, int length)
+                {if (input.Length < length)
+                    {
+        @input }
+    else
+    {
+        @input.Substring(0, length) <text>...</text>}
+                }
+                @helper date(TimeSpan time)
+                {if (time.Days >= 1)
+                    {
+        @time.Days <text> Ngày trước </text> }
+    else if (time.Hours > 1)
+    {
+        @time.Hours <text> Giờ trước </text> }
+    else if (time.Minutes > 1)
+    {
+        @time.Minutes <text> Phút trước </text> }
+    else
+    {
+        @time.Seconds <text> Giây trước </text>}
+
+
+                }
+                <div class="col-md-12 ">
+
+                    <div id="list-type" class="proerty-th">
+
+                        @foreach (var item in Model)
+                        {
+
+                            <div class="col-sm-6 col-md-3 p0">
+                                        <div class="box-two proerty-item">
+                                                @{ var iamge = item.Image.Split(',');
+                                                    DateTime startTime = DateTime.Now;
+                                                    DateTime endTime = item.NgayDang;
+                                                    TimeSpan span = startTime.Subtract(endTime); }
+                                                <div class="item-thumb" style=" width: 260px; height:223px;">
+                                                    <a href="@Url.Action("Item", "Details", new { id = item.MaTin })"><img src="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" width="260" height="223"></a>
+                                                </div>
+
+                                                <div class="item-entry overflow">
+                                                    <div style="width:240px; height: 78px">
+                                                        <span><a href="#">  @truncate(item.TieuDe, 50) </a></span>
+                                                    </div>
+
+                                                    <div class="dot-hr"></div>
+                                                    <span class="pull-left"><b> Diện tích :</b> @item.DienTich m  </span> <span style="float:right">@date(span)</span> <br />
+                                                    <span class="proerty-price pull-left"> @Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span>
+                                                    <p style="display: none;"> </p>
+                                                    <div class="property-icon">
+                                                        <div style="height: 25px">
+                                                            <img src="~/Content/assets/img/icon/addresssmal.png">  @truncate(item.DiaChi, 28)<br />
+                                                        </div>
+                                                        <div>
+                                                            <img src="~/Content/assets/img/icon/user.png"> @item.Name
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+
+                                         </div>
+
+                             </div>
+                           }
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("home",
+                                      new { page }
+                                      ))
+                    </div>
+                </div>
+            </div>
+            @{ Html.RenderAction("PartialThongKe", "Home"); }
+        </div>
+    </div>
+
+</div>

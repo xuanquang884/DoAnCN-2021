@@ -1,0 +1,53 @@
+﻿@using WebTimKiemPhongTro.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_LoginAndRegisterView.cshtml";
+    @*"~/Views/Shared/_MainLayout.cshtml"*@
+}
+
+
+<div class="details">
+    <a href="index.html">
+        <img src="~/assets/img/logos/black-logo.png" alt="logo">
+    </a>
+    <h3>Đăng nhập vào tài khoản của bạn</h3>
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <form>
+            <div class="form-group">
+
+                @Html.TextBoxFor(m => m.Email, new { @class = "form -control input-text", placeholder = "Email Address" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control input-text", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger " })
+            </div>
+
+            <div class="checkbox clearfix">
+                <div class="form-check checkbox-theme">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    <label class="form-check-label" for="rememberMe">
+                        Nhớ tài khoản
+                    </label>
+                </div>
+                @Html.ActionLink("Quên Mật Khẩu", "ForgotPassword")
+            </div>
+            <div class="form-group mb-0">
+                <button type="submit" class="btn-md btn-theme btn-block" value="">Đăng nhập</button>
+            </div>
+        </form>
+    }
+    <ul class="social-list clearfix">
+        <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+    </ul>
+</div>
+<div class="footer">
+    <span>Không có tài khoản?@Html.ActionLink("Đăng ký ngày ở đây", "Register")</span>
+</div>
+

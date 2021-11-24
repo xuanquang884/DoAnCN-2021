@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebTimKiemPhongTro.Models.GiaoDich>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
+}
+
+<h2 style="text-align:center; margin-top: 20px"><b>THÔNG TIN GIAO DỊCH</b></h2>
+@Styles.Render("~/Content/Giaodich.css")
+<div class="container">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="card-actions float-right">
+                            <div class="dropdown show">
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Số tiền</th>
+                                    <th>Thời gian</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.AspNetUsers.Email</td>
+                                        <td>@item.TinDang.TieuDe</td>
+                                        <td>@Html.FormatValue(@item.SoTien, "{0:#,###}")</td>
+                                        <td>@item.ThoiGian</td>
+                                        <td><a class="text-danger" onclick="location.href='@Url.Action("Delete", "Giaodich", new { id = item.Id })'"><i class="far fa-trash-alt"></i> Xóa</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

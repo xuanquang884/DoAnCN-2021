@@ -1,0 +1,324 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebTimKiemPhongTro.Models.TinDang>
+@{ ViewBag.Title = "Cho Thuê Phòng Trọ Hồ Chí Minh";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active item-bg">
+                <img class="d-block w-100 h-100" src="~/assets/img/banner/img-2 (1).jpg" alt="banner">
+
+            </div>
+            <div class="carousel-item item-bg">
+                <img class="d-block w-100 h-100" src="~/assets/img/banner/img-3.jpg" alt="banner">
+
+            </div>
+            <div class="carousel-item item-bg">
+                <img class="d-block w-100 h-100" src="~/assets/img/banner/img-4.jpg" alt="banner">
+
+            </div>
+        </div>
+        <div class="btn-secton">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+<!-- Search area start -->
+<div class="search-area" id="search-area-1">
+    <div class="container">
+        <div class="search-area-inner">
+            <div class="tab-pane fade active show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="search-area search-area-6">
+                    <div class="tab-box">
+                        <div class="search-area-inner">
+                            @using (Html.BeginForm("search", "Details", new { @class = "form-inline" }, FormMethod.Get))
+                            {
+                                <div class="search-contents">
+                                    <form method="GET">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-6 col-pad2">
+                                                <div class="form-group">
+                                                    <input type="text" name="SearchString" class="search-fields sf2 fc2 text-center" placeholder="Nhập Từ Khóa...">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
+                                                <div class="form-group">
+                                                    <select class="selectpicker search-fields show-tick form-control Loai" id="basic" title="Loại" name="Loai">
+                                                        <option class="text-center">Loại Nhà/Căn Hộ</option>
+                                                        <option>Phòng Trọ</option>
+                                                        <option>Căn hộ Chung Cư</option>
+                                                        <option>Nhà Nguyên Căn</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
+                                                <div class="form-group">
+                                                    <select id="lunchBegins" class="selectpicker Quan search-fields" name="Quan" data-live-search="true" data-live-search-style="begins" title="Quận">
+                                                        <option class="text-center">Quận/Huyện</option>
+                                                        <option>Quận 1</option>
+                                                        <option>Quận 2</option>
+                                                        <option>Quận 3</option>
+                                                        <option>Quận 4</option>
+                                                        <option>Quận 5</option>
+                                                        <option>Quận 6</option>
+                                                        <option>Quận 7</option>
+                                                        <option>Quận 8</option>
+                                                        <option>Quận 9</option>
+                                                        <option>Quận 10</option>
+                                                        <option>Quận 11</option>
+                                                        <option>Quận 12</option>
+                                                        <option>Quận Thủ Đức</option>
+                                                        <option>Quận Gò Vấp</option>
+                                                        <option>Quận Bình Thạnh</option>
+                                                        <option>Quận Tân Bình</option>
+                                                        <option>Quận Tân Phú</option>
+                                                        <option>Quận Phú Nhuận</option>
+                                                        <option>Quận Bình Tân</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
+                                                <div class="form-group">
+                                                    <!-- <select class="selectpicker " name="make"> -->
+                                                    <select id="basic" title="Giá" class="selectpicker show-tick form-control Gia search-fields" name="Gia">
+                                                        <option class="text-center">Giá</option>
+                                                        <option value="1000000">1.000.000</option>
+                                                        <option value="1500000">1.500.000</option>
+                                                        <option value="2500000">2.500.000</option>
+                                                        <option value="3000000">3.000.000</option>
+                                                        <option value="4000000">4.000.000</option>
+                                                        <option value="5500000">5.500.000</option>
+                                                        <option value="6000000">6.000.000</option>
+                                                        <option value="7500000">7.500.000</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2 cp3">
+                                                <div class="form-group fg2">
+                                                    <button class="search-button btn-md btn-color">Tìm kiếm</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search area end -->
+<!-- banner end -->
+<!-- Search area start -->
+<!-- Search area start -->
+<!-- Properties list fullwidth start -->
+
+<div class="properties-list-fullwidth content-area-2">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="property-box">
+                        @{ var iamge = item.Image.Split(',');
+                            DateTime startTime = DateTime.Now;
+                            DateTime endTime = item.NgayDang;
+                            TimeSpan span = startTime.Subtract(endTime); }
+                        <div class="property-thumbnail">
+                            <a href="@Url.Action("Item", "Details", new { id = item.MaTin })" class="property-img">
+                                <div class="listing-badges">
+                                    <span class="featured">Featured</span>
+                                </div>
+                                <div class="tag-for">For Sale</div>
+                                
+                                <img src="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" width="260" height="223" alt="property-box" class="img-fluid">
+                            </a>
+
+                        </div>
+                        <div class="detail">
+                            <h1 class="title">
+                                <a href="@Url.Action("Item", "Details", new { id = item.MaTin })">@truncate(item.TieuDe, 50)</a>
+                            </h1>
+                            <div class="location">
+                                <span class="pull-left"><b> Diện tích :</b> @item.DienTich m2  </span>  <br />
+                                <span ><b> Giá Phòng : </b>@Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
+                                <a href="@Url.Action("Item", "Details", new { id = item.MaTin })">
+                                    <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i> @truncate(item.DiaChi, 28)
+                                </a>
+
+                            </div>
+                            
+                          
+                        </div>
+                        <div class="footer">
+                            <a href="#">
+                                <i class="fa fa-user"> @item.Name </i> 
+                            </a>
+                            <span><span style="float:right">@date(span)</span>
+                                <i class="fa fa-calendar-o"></i>       
+                                @helper truncate(String input, int length)
+                                {if (input.Length < length)
+                                    {
+                                        @input }
+                                    else
+                                    {
+                                        @input.Substring(0, length) <text>...</text>}
+                                }
+                                @helper date(TimeSpan time)
+                                {if (time.Days >= 1)
+                                    {
+                                        @time.Days <text> Ngày trước </text> }
+                                    else if (time.Hours > 1)
+                                    {
+                                        @time.Hours <text> Giờ trước </text> }
+                                    else if (time.Minutes > 1)
+                                    {
+                                        @time.Minutes <text> Phút trước </text> }
+                                    else
+                                    {
+                                        @time.Seconds <text> Giây trước </text>}
+
+
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12">
+                <div class="pagination-box text-center">
+                    <nav aria-label="Page navigation example">
+                        Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+                        <br />
+                        <ul class="pagination">
+                            <li class="page-item">@Html.PagedListPager(Model, page => Url.Action("home", new {@class="page-link", page }))</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Properties list fullwidth end -->
+<!-- services 3 start -->
+<div class="services-3 content-area-20 bg-white">
+    <div class="container">
+        <div class="main-title">
+            <h1>Bạn Có Gì Ở Chúng Tôi ?</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
+                <div class="services-info-3">
+                    <i class="flaticon-hotel-building"></i>
+                    <h5>Một Căn Hộ Sạch Sẽ</h5>
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow fadeInUp delay-04s">
+                <div class="services-info-3">
+                    <i class="flaticon-house"></i>
+                    <h5>Một Ngôi Nhà</h5>
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow fadeInDown delay-04s">
+                <div class="services-info-3">
+                    <i class="flaticon-call-center-agent"></i>
+                    <h5>Hỗ Trợ 24/7</h5>
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow fadeInRight delay-04s">
+                <div class="services-info-3">
+                    <i class="flaticon-office-block"></i>
+                    <h5>Những Tiện Ích</h5>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- services 3 end -->
+<!-- Agent start -->
+<div class="agent content-area">
+    <div class="container">
+        <div class="main-title">
+            <h1>Nhà Phát Triển</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
+
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
+                <div class="agent-2">
+                    <div class="agent-photo">
+                        <img src="http://placehold.it/255x285" alt="agent-grid-2" class="img-fluid">
+                        <ul class="social-list clearfix">
+                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google-bg"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="agent-details">
+                        <h5><a href="agent-detail.html">Martin Smith</a></h5>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInRight delay-04s">
+                <div class="agent-2">
+                    <div class="agent-photo">
+                        <img src="http://placehold.it/255x285" alt="agent-grid-2" class="img-fluid">
+                        <ul class="social-list clearfix">
+                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google-bg"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="agent-details">
+                        <h5><a href="agent-detail.html">Brandon Miller</a></h5>
+                        <p>Office Manager</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInRight delay-04s">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Agent end -->
+<!-- intro section start -->
+<div class="intro-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="intro-text">
+                    <a href="index.html" class="logos"><img src="assets/img/logos/logo-white.png" alt="logo"></a>
+                    <a href="index.html" class="d-none-768"><img src="assets/img/logos/logo-white.png" alt="logo"></a>
+                    <span>Looking To Sell Or Rent Your Property?</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <a href="#" class="btn btn-md sn">Submit Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- intro section end -->

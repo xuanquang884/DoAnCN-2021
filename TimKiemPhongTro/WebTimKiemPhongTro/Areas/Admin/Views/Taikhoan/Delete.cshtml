@@ -1,0 +1,80 @@
+﻿@model WebTimKiemPhongTro.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
+}
+
+
+
+<div>
+    <dl class="dl-horizontal">
+
+        @Styles.Render("~/Content/thongtinuser.css")
+        <h2 style="text-align:center; margin-top:20px"><b>XÓA TÀI KHOẢN NGƯỜI DÙNG</b></h2>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+        <div class="container mt-3 mb-4">
+            <h3>Bạn muốn xóa người dùng này?</h3>
+            <div class="col-lg-12 mt-4 mt-lg-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                            <table class="table manage-candidates-top mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Họ và tên</th>
+                                        <th class="text-center">Ví tiền</th>
+                                        <th class="action text-right">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="candidates-list">
+                                        <td class="title">
+                                            <div class="thumb">
+                                                <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
+                                            </div>
+                                            <div class="candidate-list-details">
+                                                <div class="candidate-list-info">
+                                                    <div class="candidate-list-title">
+                                                        <h5 class="mb-0"><a href="#"> @Html.DisplayFor(model => model.Name)</a></h5>
+                                                    </div>
+                                                    <div class="candidate-list-option">
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fas fa-filter pr-1"></i>@Html.DisplayFor(model => model.Email)</li>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> @Html.DisplayFor(model => model.PhoneNumber)</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="candidate-list-favourite-time text-center">
+                                            <a class="candidate-list-favourite order-2 text-danger" href="#"><i class="fas fa-heart"></i></a>
+                                            <span class="candidate-list-time order-1">@Html.DisplayFor(model => model.ViTien) VNĐ</span>
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled mb-0 d-flex justify-content-end">
+
+                                                @using (Html.BeginForm())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="form-actions no-color">
+
+                                                        <input type="submit" value="Xóa" class="btn btn-default" style="color: #ffffff; background: #2196f38f; box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); padding: 0.5em 1em; display: inline-block; margin: 0.5em; margin-left: 0em !important;" />
+                                                        <button type="button" class="btn btn-default" style="color: #ffffff; background: #00aecd94; box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); padding: 0.5em 1em; display: inline-block; margin: 0.5em 0;">@Html.ActionLink("Hủy", "Index", new { id = Model.Id })</button>
+                                                    </div>
+                                                }
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dl>
+</div>
+

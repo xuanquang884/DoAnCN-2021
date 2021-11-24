@@ -1,0 +1,99 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebTimKiemPhongTro.Models.TinDang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
+}
+
+
+<h2 style="text-align:center; margin-top: 20px"><b>THÔNG TIN BÀI ĐĂNG</b></h2>
+
+@Styles.Render("~/Content/tindang.css")
+@Styles.Render("~/Content/phantrang.css")
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+@helper truncate(String input, int length)
+{if (input.Length < length)
+    {
+        @input }
+    else
+    {
+        @input.Substring(0, length) <text>...</text>}
+}
+@helper date(TimeSpan time)
+{if (time.Days >= 1)
+    {
+        @time.Days <text> Ngày trước </text> }
+    else if (time.Hours > 1)
+    {
+        @time.Hours <text> Giờ trước </text> }
+    else if (time.Minutes > 1)
+    {
+        @time.Minutes <text> Phút trước </text> }
+    else
+    {
+        @time.Seconds <text> Giây trước </text>}
+
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-lg-4 mb-4">
+                        @{ var iamge = item.Image.Split(',');
+                            DateTime startTime = DateTime.Now;
+                            DateTime endTime = item.NgayDang;
+                            TimeSpan span = startTime.Subtract(endTime); }
+                        <div class="candidate-list candidate-grid">
+                            <div class="candidate-list-image">
+                                <img class="img-fluid" src="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" alt="">
+                            </div>
+                            <div class="candidate-list-details">
+                                <div class="candidate-list-info" style="height: 80px">
+                                    <div class="candidate-list-title">
+                                        <h5><a style="color: #007bff">@truncate(item.TieuDe, 50)</a></h5>
+                                    </div>
+                                    <div class="candidate-list-option">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-filter pr-1"></i>@item.DienTich m²</li>
+                                            <li><i class="fas fa-map-marker-alt pr-1"></i>@truncate(item.DiaChi, 28)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="candidate-list-favourite-time" style="height: 70px">
+                                    <span class="pull-left" style="color: #FDC600; line-height:initial"><h5><b> Giá tiền :</b> @Html.FormatValue(@item.GiaTien, "{0:#,###}") VNĐ/Tháng  </h5></span>
+                                    <hr />
+                                    <span class="candidate-list-time order-1"><i class="far fa-clock pr-1"></i>@date(span)</span>
+                                </div>
+                                <div>
+                                    <a class="text-info" onclick="location.href='@Url.Action("Details", "Tindangs", new { id = item.MaTin })'"><i class="far fa-eye"></i></a>
+                                    <a class="text-danger" onclick="location.href='@Url.Action("Delete", "Tindangs", new { id = item.MaTin })'"><i class="far fa-trash-alt"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center mt-4 mt-sm-5">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("Index",
+                                new { page }
+                                ))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

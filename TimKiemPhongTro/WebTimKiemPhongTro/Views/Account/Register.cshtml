@@ -1,0 +1,55 @@
+﻿@model WebTimKiemPhongTro.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Đăng Kí Tài Khoản";
+    Layout = "~/Views/Shared/_LoginAndRegisterView.cshtml";
+}
+<div class="details">
+    <a href="index.html">
+        <img src="~/assets/img/logos/black-logo.png" alt="logo">
+    </a>
+    <h3>Đăng kí tài khoản</h3>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <form>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Name, new { @class = "input-text", placeholder = "Nhập tên" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                @* <input type="text" name="fullname" class="input-text" >*@
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Số điện thoại" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                @* <input type="email" name="email" class="input-text" >*@
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, new { @class = "input-text", placeholder = "Địa chỉ Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                @* <input type="email" name="email" class="input-text" >*@
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @class = "input-text", placeholder = "Mật khẩu" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                @*<input type="password" name="Password" class="input-text" placeholder="Password">*@
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-text", placeholder = "Nhập lại mật khẩu" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-0">
+                <button type="submit" class="btn-md btn-theme btn-block">Đăng kí</button>
+            </div>
+        </form>
+    }
+    <ul class="social-list clearfix">
+        <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+    </ul>
+</div>
+<div class="footer">
+    <span>Đã là thành viên? <a href="/Account/Login">Đăng nhập</a></span>
+</div>

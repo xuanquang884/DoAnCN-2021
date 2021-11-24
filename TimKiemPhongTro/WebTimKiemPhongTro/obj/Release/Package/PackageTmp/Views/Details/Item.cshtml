@@ -1,0 +1,389 @@
+﻿@model WebTimKiemPhongTro.Models.TinDang
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+
+
+<style>
+    #mapCanvas {
+        height: 600px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    .mySlides1, .mySlides2 {
+        display: none
+    }
+
+    img {
+        vertical-align: middle;
+    }
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 720px;
+        max-height: 370px;
+        position: relative;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {
+            background-color: #f1f1f1;
+            color: black;
+        }
+    /*--------------------------*/
+    <style >
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+
+</style>
+
+<!-- property area -->
+<div class="content-area single-property" style="background-color: #FCFCFC;">
+    &nbsp;
+
+    <div class="container">
+
+        <div class="clearfix padding-top-40">
+            <nav aria-label="breadcrumb padding-top-40">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("home","Home")">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Chi tiết</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tin đăng-@Model.MaTin</li>
+                </ol>
+            </nav>
+            <div class="col-md-8 single-property-content prp-style-2">
+
+                <div class="">
+                    <div class="row">
+                        <div class="light-slide-item">
+                            <div class="clearfix">
+                                @{ var iamge = Model.Image.Split(',');
+
+                                }
+
+                                <div class="slideshow-container">
+                                    @foreach (var i in iamge)
+                                    {
+                                        <div class="mySlides1">
+                                            <img src="~/Content/assets/img/uploadimage/@i" style="width: 100%;height:370px;">
+                                        </div>
+                                    }
+
+
+                                    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row" style="margin-left:0">
+                            <h4>@Model.TieuDe</h4><br />
+                            <h5><img src="~/Content/assets/img/icon/pricesmall.png">  @Html.FormatValue(Model.GiaTien, "{0:#,###}") VND/Tháng </h5>
+                            <h5><img src="~/Content/assets/img/icon/area.png">   @Model.DienTich m </h5>
+                            <h5><img src="~/Content/assets/img/icon/addresssmal.png">  @Model.DiaChi </h5>
+                        </div>
+                        @{
+                            DateTime startTime = DateTime.Now;
+                            DateTime endTime = @Model.NgayDang;
+                            TimeSpan span = startTime.Subtract(endTime);
+
+                        }
+                        @if (Model.SoNgay < span.Days)
+                        {
+                            <div id="da_het_han"></div>
+                        }
+
+                    </div>
+
+                    <div class="single-property-wrapper">
+
+                        <div class="section">
+                            <h4 class="s-property-title">Thông Tin Mô Tả</h4>
+                            <div class="s-property-content">
+
+                                <p>  @Html.Raw(Model.MoTa)</p>
+                            </div>
+                        </div>
+                        <!-- End description area  -->
+
+                        <div class="section additional-details">
+
+                            <h4 class="s-property-title">Đặc Điểm Tin</h4>
+
+                            <ul class="additional-details-list clearfix">
+                                <li>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Mã tin</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">@Model.MaTin</span>
+                                </li>
+
+                                <li>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Chuyên mục</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">@Model.ChuyenMuc</span>
+                                </li>
+                                <li>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Ngày đăng</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"> @Model.NgayDang</span>
+                                </li>
+
+                                <li>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Người đăng</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">@Model.Name</span>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                        <!-- End additional-details area  -->
+                        @helper truncate(String input, int length)
+                        {if (input.Length < length)
+                            {
+                                @input }
+                            else
+                            {
+                                @input.Substring(0, length) <text>...</text>}
+                        }
+                        <!-- Tin Liên Quan-->
+                        <div class="section additional-details">
+
+                            <h4 class="s-property-title">Những tin Liên Quan</h4>
+                            <div id="list-type" class="proerty-th-list">
+
+                                @{ var tinlienquan = ViewData["TinLienQuan"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
+                                @for (int i = 0; i < 6; i++)
+                                {
+                                    <div style="height:205px !important" class="col-sm-6 col-md-4 p0">
+                                        <div style="height: 205px; padding: 0px 10px !important; margin-bottom: 15px !important; " class="box-two proerty-item">
+                                            @{ var image = tinlienquan[i].Image.Split(','); }
+                                            <div class="item-thumb">
+                                                <a href="@Url.Action("Item", "Details", new { id = tinlienquan[i].MaTin })"><img src="~/Content/assets/img/uploadimage/@image[0]" width="260" height="200"></a>
+                                            </div>
+
+                                            <div class="item-entry overflow">
+                                                <p style="height:80px;"><a href="#"> @truncate(tinlienquan[i].TieuDe, 80)</a></p>
+                                                <div class="dot-hr"></div>
+                                                <span class="pull-left"><b> Area :</b>  @tinlienquan[i].DienTich m</span>
+                                                <span style="font-weight:600;color:#FDC600" class="pull-right">  @Html.FormatValue(tinlienquan[i].GiaTien, "{0:#,###}") VND/Tháng</span>
+                                                <p style="display: none; height: 10px; padding-top: 0px !important; "> </p>
+                                                <div>
+                                                    <div style="height: 40px">
+                                                        <img src="~/Content/assets/img/icon/addresssmal.png">  @tinlienquan[i].DiaChi<br />
+                                                    </div>
+                                                    <div>
+                                                        <img src="~/Content/assets/img/icon/user.png"> @tinlienquan[i].Name
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <!-- End tin liên Quan-->
+
+                    </div>
+                </div>
+
+            </div>
+            @*thong tin cơ bản*@
+            <div class="col-md-4 p0">
+                <aside class="sidebar sidebar-property blog-asside-right property-style2">
+                    <div class="dealer-widget">
+                        <div class="dealer-content">
+                            <div class="inner-wrapper">
+
+                                <div class="dealer-section-space">
+                                    <span>Thông Tin</span>
+                                </div>
+                                <div class="clear">
+                                    <div class="col-xs-4 col-sm-4 dealer-face">
+                                        <a href="">
+                                            <img src="~/Content/assets/img/client-face1.png" class="img-circle">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 ">
+                                        <h3 class="dealer-name">
+                                            <a href="">Người Đăng Tin</a>
+                                            <span>@Model.Name</span>
+                                        </h3>
+                                        <div class="dealer-social-media">
+                                            <a class="twitter" target="_blank" href="">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                            <a class="facebook" target="_blank" href="">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <a class="gplus" target="_blank" href="">
+                                                <i class="fa fa-google-plus"></i>
+                                            </a>
+                                            <a class="linkedin" target="_blank" href="">
+                                                <i class="fa fa-linkedin"></i>
+                                            </a>
+                                            <a class="instagram" target="_blank" href="">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="clear">
+                                    <ul class="dealer-contacts">
+                                        <li><i class="pe-7s-map-marker strong"> </i> @Model.Name</li>
+                                        <li><i class="pe-7s-mail strong"> </i>@Model.email</li>
+                                        <li><i class="pe-7s-call strong"> </i>@Model.Sdt</li>
+                                    </ul>
+                                    <p>Thông tin chi tiết liên hệ số điện thoại hoặc địa chỉ email ...</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Những tin gần đây</h3>
+                        </div>
+
+                        <div class="panel-body recent-property-widget">
+                            <ul>
+                                @{ var tinmoi = ViewData["TinMoi"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
+                                @for (int i = 1; i < 6; i++)
+                                {
+                                    <li>
+                                        @{ var anh = tinmoi[i].Image.Split(','); }
+                                        <div>
+                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                                                <a href="#"><img src="~/Content/assets/img/uploadimage/@anh[0]" width="84" height="63"></a>
+
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                                                <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})"> @truncate(tinmoi[i].TieuDe, 40) </a><br />
+                                                <span class="property-price" style="color:#FDC600;"> @Html.FormatValue(tinmoi[i].GiaTien, "{0:#,###}") VND/Tháng</span>
+                                            </div>
+                                            <hr />
+
+                                        </div>
+
+                                        <div style="clear:both"></div>
+
+
+
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+
+                </aside>
+            </div>
+
+
+        </div>
+
+        @{ Html.RenderAction("PartialThongKe", "Home"); }
+    </div>
+</div>
+@*<div class="map" id="mapCanvas"></div>*@
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtaV6ZrxKqRZlAim1ABFPBXDNCCKIEZ18&callback=initMap"></script>
+<script src="/assets/client/js/controller/contactController.js"></script>
+<script>
+        // This example displays a marker at the center of Australia.
+        // When the user clicks the marker, an info window opens.
+        //21.046300, 105.793266
+        function initMap() {
+            var uluru = { lat: 21.046300, lng: 105.793266 };
+            var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+                zoom: 18,
+                center: uluru
+            });
+            var contentString = '@Html.Raw(Model.DiaChi)';
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                title: 'Địa chỉ'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+
+
+<script>
+    var slideIndex = [1, 1];
+    var slideId = ["mySlides1", "mySlides2"]
+    showSlides(1, 0);
+    showSlides(1, 1);
+    function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+    }
+    function showSlides(n, no) {
+        var i;
+        var x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) { slideIndex[no] = 1 }
+        if (n < 1) { slideIndex[no] = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex[no] - 1].style.display = "block";
+    }
+</script>

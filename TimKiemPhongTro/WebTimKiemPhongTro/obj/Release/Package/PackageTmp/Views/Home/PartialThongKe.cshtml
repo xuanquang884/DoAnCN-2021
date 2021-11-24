@@ -1,0 +1,76 @@
+﻿
+<style>
+    /*css thong ke*/
+    .sectionn {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #dedede;
+        border-radius: 8px;
+    }
+
+    .section-whyus .section-content {
+        padding: 20px 50px 50px;
+        text-align: center;
+    }
+
+    .sectionn .section-title {
+        /*font-size: 1.3rem;*/
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+    }
+    /*.clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }*/
+    .section-whyus .whyus-countup .whyus-countup-item {
+        width: 25%;
+        float: left;
+        text-align: center;
+    }
+
+    .btn.red {
+        background: #f73859;
+        border-color: #f73859;
+    }
+
+    .section-whyus .whyus-countup .whyus-countup-item .whyus-countup-item-number {
+        font-weight: 700;
+        font-size: 1.5rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .section-whyus .star.star-5 {
+        width: 100px;
+        height: 20px;
+        background: url(../../assets/img/icon/star2.png) left center repeat-x;
+        background-size: 20px 20px;
+        display: inline-block;
+        margin-right: 3px;
+        float: none;
+    }
+
+</style>
+<div class="clearfix padding-top-40">
+    <section class="sectionn section-whyus">
+        <div class="section-content">
+            <h4 class="section-title">Tại sao lại chọn PhongTroTrucTuyen.com?</h4>
+            <p>Chúng tôi biết bạn có rất nhiều lựa chọn, nhưng PhongTroTrucTuyen.com tự hào là trang web đứng top google về các từ khóa: <a href="" title="Cho thuê phòng trọ"><strong>cho thuê phòng trọ</strong></a>, <strong>nhà trọ</strong>, <a href="/nha-cho-thue" title="Cho thuê nhà nguyên căn"><strong>thuê nhà nguyên căn</strong></a>, <a href="#" title="Cho thuê căn hộ"><strong>cho thuê căn hộ</strong></a>,</a>...Vì vậy tin của bạn đăng trên website sẽ tiếp cận được với nhiều khách hàng hơn, do đó giao dịch nhanh hơn, tiết kiệm chi phí hơn</p><div class="whyus-countup clearfix">
+                <div class="whyus-countup-item">
+                    <span class="whyus-countup-item-number">@ViewBag.Tongnguoidung+</span>
+                    <span class="whyus-countup-item-text">Thành viên</span>
+                </div>
+                <div class="whyus-countup-item"><span class="whyus-countup-item-number">@ViewBag.Tongtindang+ </span><span class="whyus-countup-item-text">Tin đăng</span></div><div class="whyus-countup-item"><span class="whyus-countup-item-number">@ViewBag.Songuoitruycap </span><span class="whyus-countup-item-text">Lượt truy cập</span></div><div class="whyus-countup-item"><span class="whyus-countup-item-number">@ViewBag.Songuoionline </span><span class="whyus-countup-item-text">Số người đang online</span></div>
+            </div>
+            <br><br><h5 class="section-title">Chi phí thấp, hiệu quả tối đa</h5>
+            <div class="clearfix" style="display: flex; justify-content: center; margin: 10px 0"><span class="star star-5"></span></div>
+            <p class="testimonial">"Trước khi biết website phongtro123, mình phải tốn nhiều công sức và chi phí cho việc đăng tin cho thuê: từ việc phát tờ rơi, dán giấy, và đăng lên các website khác nhưng hiệu quả không cao. Từ khi biết website phongtrotructuyen.com, mình đã thử đăng tin lên và đánh giá hiệu quả khá cao trong khi chi phí khá thấp, không còn tình trạng phòng trống kéo dài." <br></p><br><h6 class="section-title">Bạn đang có phòng trọ / căn hộ cho thuê?</h6><p>Không phải lo tìm người cho thuê, phòng trống kéo dài</p><a class="btn red" style="padding: 10px 30px;" rel="nofollow" href="@Url.Action("DangTin","User")">Đăng tin ngay</a>
+        </div>
+    </section>
+</div>
