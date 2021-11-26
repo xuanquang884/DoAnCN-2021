@@ -40,20 +40,18 @@ namespace WebTimKiemPhongTro.Controllers
         public ActionResult DangTin()
         {
             var userID = User.Identity.GetUserId();
-            if (userID == null)
+            if (userID != null)
             {
-              
-                return RedirectToAction("Login", "Account");
-            }
-            else {
-                ApplicationUser user =
-               System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(
-               ).FindById(userID);
+                ApplicationUser user =System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(userID);
                 ViewBag.vitien = user.ViTien;
                 TinDang tin = new TinDang();
                 tin.ListLoaiTin = data.Loai.ToList();
                 return View(tin);
+                
+            }
+            else {
 
+                return RedirectToAction("Login", "Account");
             }
         
         }

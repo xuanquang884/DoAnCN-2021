@@ -54,13 +54,8 @@ namespace WebTimKiemPhongTro.Models
         public string Facebook { get; set; }
 
         [StringLength(256)]
-        public string Twitter { get; set; }
+        public string Zalo { get; set; }
 
-        [StringLength(256)]
-        public string Website { get; set; }
-
-        [StringLength(256)]
-        public string Fax { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GiaoDich> GiaoDich { get; set; }

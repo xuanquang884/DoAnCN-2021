@@ -2619,7 +2619,7 @@ a {
     position: relative;
     border: none;
     margin: 0;
-    background: rgba(0, 0, 0, 0.04) url(http://placehold.it/350x214) top left repeat;
+    background: rgba(0, 0, 0, 0.04) url('../img/banner/img-6.jpg') top left repeat;
     background-size: cover;
     color: #efefef;
 }
