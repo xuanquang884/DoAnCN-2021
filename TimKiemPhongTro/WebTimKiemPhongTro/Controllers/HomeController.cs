@@ -14,12 +14,6 @@ namespace WebTimKiemPhongTro.Controllers
     public class HomeController : Controller
     {
         WebDataContext data = new WebDataContext();
-        public ActionResult Index()
-        {
-            
-            return View();
-        }
-
        
         public ActionResult Huongdan()
         {
@@ -99,10 +93,6 @@ namespace WebTimKiemPhongTro.Controllers
         }
 
 
-        public ActionResult Policy()
-        {
-            return View();
-        }
-
+        
     }
 }

@@ -3029,7 +3029,6 @@
     <Content Include="Views\Home\home.cshtml" />
     <Content Include="Views\User\DangTin.cshtml" />
     <Content Include="Views\Details\Item.cshtml" />
-    <Content Include="Views\Details\search.cshtml" />
     <Content Include="Web.Config" />
     <Content Include="Views\Home\Huongdan.cshtml" />
     <Content Include="Views\Home\Giaodich.cshtml" />
@@ -3043,9 +3042,7 @@
     <Content Include="Views\PhiDangtin\Details.cshtml" />
     <Content Include="Views\PhiDangtin\Edit.cshtml" />
     <Content Include="Views\PhiDangtin\Index.cshtml" />
-    <Content Include="Views\Details\sendmail.cshtml" />
     <Content Include="Views\Home\PartialThongKe.cshtml" />
-    <Content Include="Views\Home\Policy.cshtml" />
     <Content Include="Views\Shared\_LoginAndRegisterView.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
