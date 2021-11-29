@@ -25,14 +25,14 @@
         [Required(ErrorMessage = "Vui lòng nhập chuyên mục!")]
         [StringLength(250)]
         public string ChuyenMuc { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập giá tiền!")]           
+        [Required(ErrorMessage = "Vui lòng nhập giá tiền!")]
         [Display(Name = "Giá Tiền")]
         public int GiaTien { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập diện tích phòng!")]
         [Display(Name = "Diện Tích")]
         public int DienTich { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập mô tả phòng!")]
-        [StringLength(4000,ErrorMessage ="Tối đa 4000 kí tự!")]
+        [StringLength(4000, ErrorMessage = "Tối đa 4000 kí tự!")]
         public string MoTa { get; set; }
 
         public DateTime NgayDang { get; set; }
@@ -41,9 +41,9 @@
         [StringLength(128)]
         public string MaNguoiDang { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập địa chỉ!")]
-        [StringLength(250, ErrorMessage = "Tối đa 250 kí tự!")]    
+        [StringLength(250, ErrorMessage = "Tối đa 250 kí tự!")]
         public string DiaChi { get; set; }
-       
+
         public string Image { get; set; }
 
         public int? LoaiTin { get; set; }
@@ -56,6 +56,8 @@
         public virtual ICollection<GiaoDich> GiaoDich { get; set; }
 
         public virtual Loai Loai { get; set; }
+        public string Zalo;
+        public string Facebook;
         public string Name;
         public string Sdt;
         public string email;

@@ -3,62 +3,76 @@
     ViewBag.Title = "Huongdan";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Hướng dẫn nạp tiền</h1>
+            <ul class="breadcrumbs">
+                <li><a href="/Home/Home">Trang chủ</a></li>
+                <li class="active">Hướng dẫn nạp tiền</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
 <div class="container">
     <div class="row">
-        <nav aria-label="breadcrumb padding-top-40">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="@Url.Action("home","Home")">Trang chủ</a></li>
 
-                <li class="breadcrumb-item active" aria-current="page">Hướng dẫn</li>
-            </ol>
-        </nav>
         <div class="blog-lst col-md-12 pl0">
             <section id="id-100" class="post single">
 
                 <div class="post-header single text-center">
                     <div class="">
-                        <h2 class="wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">Hướng Dẫn Nạp Tiền</h2>
+                        <br />
+                        <h1 class="wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;"><b>Hướng Dẫn Nạp Tiền</b></h1>
                         <div class="title-line wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;"></div>
                     </div>
                     <div class="text-center">
-                        <p>Bạn có thể nạp tiền theo 1 trong 2 cách sau - Tối thiểu 20.000VNĐ/1 lần nạp</p>
+                        <p>Bạn có thể nạp tiền theo vào 1 trong 3 ví điện tử dưới đây - <b></b></p>
                     </div>
 
                     <div>
                         <p>
-                            <b> CÁCH 1: Thông qua 1 trong 3 Ví điện tử: Momo, ViettelPay, ZaloPay hoặc AirPay</b> <br />
-                            Bạn hãy Quét mã dưới đây bằng ứng dụng Momo (Vietelpay, Zalopay hoặc Airpay). Chọn mục Chuyển tiền và chuyển số tiền mà bạn muốn nạp. Trong trường hợp không quét mã được, bạn có thể chuyển trực tiếp qua SĐT: 0565397780 với nội dung chuyển khoản là:
+                            <b> Thông qua 1 trong 3 Ví điện tử: Momo, ViettelPay, ZaloPay hoặc AirPay</b> <br />
+                            Bạn hãy Quét mã dưới đây bằng ứng dụng Momo (Vietelpay, Zalopay hoặc Airpay). Chọn mục Chuyển tiền và chuyển số tiền mà bạn muốn nạp. Trong trường hợp không quét mã được, bạn có thể chuyển trực tiếp qua SĐT: 0328265662
                             <br />
                         </p>
-                        <p>@User.Identity.GetUserName() + @DateTime.Now.ToString("dd/MM/yyyy")</p>
+                        <p> <b>Với nội dung chuyển khoản là:</b> @User.Identity.GetUserName() + @DateTime.Now.ToString("dd/MM/yyyy")</p>
 
 
-                        
+
                     </div>
+                    <br />
                     <div class="text-center">
-                        <h3>Nạp Tiền Thông Qua Momo</h3>
+                        <h3><b>Nạp Tiền Thông Qua ZaloPay</b></h3>
                     </div>
+                    <br />
                     <div class="text-center">
-                        <img style="width:50%" src="~/Content/assets/img/social_big/MoMo.jpg"/>
+                        <img style="width:50%" src="~/assets/img/zalopay.jpg" />
                     </div>
-
-                    <div>
-                        <p>
-                            <b> CÁCH 2: Thông qua tài khoản ngân hàng với nội dung chuyển khoản: </b> <br />
-                            <p>@User.Identity.GetUserName() + @DateTime.Now.ToString("dd/MM/yyyy")</p>
-
-
-
-                        </p>
-                    </div>
+                    <br />
                     <div class="text-center">
-                        <h5>Nạp Tiền Thông Ngân Hàng Agribank,  Stk: 5023 205 148 803, chủ thẻ: Bùi Danh Tuấn </h5>
+                        <h3><b>Nạp Tiền Thông Qua Momo</b></h3>
                     </div>
+                    <br />
+                    <div class="text-center">
+                        <img style="width:50%" src="~/assets/img/momo.png" />
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <h3><b>Nạp Tiền Thông Qua ViettelPay</b></h3>
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <img style="width:50%" src="~/assets/img/vietelpay.png" />
+                    </div>
+                    <br />
                     <div style="margin-bottom:30px;">
                         <p>
                             Lưu ý: Thời gian duyệt vào tài khoản là từ 2-5 h (Trong giờ hành chính từ 7h sáng đến 12h khuya). Tuy nhiên có thể kéo dài đến 8-10h ngày nếu mình có việc bận. Nếu sau 24h vẫn chưa có tiền vào tài khoản, bạn có thể liên hệ với mình qua đường link Facebook hoặc Chat trực tiếp trên Website để mình kiểm tra giao dịch (nếu bị sót) nhé!
                         </p>
-                        <a href="https://www.facebook.com/Chuy%C3%AAn-Gia-B%E1%BA%A5t-%C4%90%E1%BB%99ng-S%E1%BA%A3n-105048815231147/?ref=pages_you_manage">Facebook</a>
+                        <a href="https://www.facebook.com/zkyboy915">Facebook</a>
                     </div>
 
                 </div>

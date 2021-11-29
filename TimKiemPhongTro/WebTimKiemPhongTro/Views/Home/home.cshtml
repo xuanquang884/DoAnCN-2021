@@ -191,10 +191,9 @@
             <div class="col-lg-12">
                 <div class="pagination-box text-center">
                     <nav aria-label="Page navigation example">
-                        Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
-                        <br />
+                        @*Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount*@
                         <ul class="pagination">
-                            <li class="page-item">@Html.PagedListPager(Model, page => Url.Action("home", new {@class="page-link", page }))</li>
+                            <li class="page-item" >@Html.PagedListPager(Model, page => Url.Action("home", new {@class= "page-link", page }))</li>
                         </ul>
                     </nav>
                 </div>

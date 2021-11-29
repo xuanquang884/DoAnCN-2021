@@ -22,11 +22,14 @@ namespace WebTimKiemPhongTro.Controllers
             ApplicationUser user =
               System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(
               ).FindById(tin.MaNguoiDang);
+            
             tin.Name = user.Name;
             tin.Sdt = user.PhoneNumber;
             tin.email = user.Email;
+            tin.Zalo = user.Zalo;
+            tin.Facebook = user.Facebook;
 
-            List<TinDang> tinmoi = data.TinDang.OrderByDescending(m => m.NgayDang).ToList();
+            List <TinDang> tinmoi = data.TinDang.OrderByDescending(m => m.NgayDang).ToList();
             ViewData["TinMoi"] = tinmoi;
             var tinlienquan = data.TinDang.ToList();
             tinlienquan = tinlienquan.OrderBy(n => n.Loai.DoUutien).ThenByDescending(n => n.NgayDang).ToList();

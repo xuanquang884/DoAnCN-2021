@@ -50,12 +50,12 @@ namespace WebTimKiemPhongTro.Models
         [StringLength(256)]
         public string Image { get; set; }
 
+
         [StringLength(256)]
         public string Facebook { get; set; }
 
         [StringLength(256)]
         public string Zalo { get; set; }
-
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GiaoDich> GiaoDich { get; set; }

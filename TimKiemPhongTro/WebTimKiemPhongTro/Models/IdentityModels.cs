@@ -12,6 +12,9 @@ namespace WebTimKiemPhongTro.Models
         public string Name { get; set; }
         //public string PhoneNumber { get; set; }
         public int ViTien { get; set; }
+        public string Zalo { get; internal set; }
+        public string Facebook { get; internal set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

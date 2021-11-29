@@ -60,7 +60,16 @@
                                 <tr class="candidates-list">
                                     <td class="title">
                                         <div class="thumb">
-                                            <img class="img-fluid" src="~/Content/assets/img/uploadimage/@item.Image" alt="">
+                                            @{
+                                                if (@item.Image == null)
+                                                {
+                                                    <img class="img-fluid" src="~/assets/img/149071.png" alt="Ảnh người dùng">
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-fluid" src="~/Content/assets/img/uploadimage/@item.Image" alt="Ảnh người dùng">
+                                                }
+                                            }
                                         </div>
                                         <div class="candidate-list-details">
                                             <div class="candidate-list-info">
@@ -82,8 +91,17 @@
                                         <button href="" class="them button" id="congtien" data-productid="@item.Id">Thêm</button>
                                     </td>
                                     <td class="candidate-list-favourite-time text-center">
-                                        <a class="candidate-list-favourite order-2 text-danger" href="#"><i class="fas fa-heart"></i></a>
-                                        <span class="candidate-list-time order-1" id="@item.Id">@Html.FormatValue(@item.ViTien, "{0:#,###}") VNĐ</span>
+                                        <a class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                                        @{
+                                            if (item.ViTien == 0)
+                                            {
+                                                <span class="candidate-list-time order-1">0 VNĐ</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="candidate-list-time order-1">@Html.FormatValue(@item.ViTien, "{0:#,###}") VNĐ</span>
+                                            }
+                                        }
                                     </td>
                                     <td>
                                         <ul class="list-unstyled mb-0 d-flex justify-content-end">

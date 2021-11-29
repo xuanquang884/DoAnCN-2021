@@ -5,8 +5,6 @@
 }
 
 
-
-
 <style>
     #mapCanvas {
         height: 600px;
@@ -71,319 +69,315 @@
         margin: 0;
         padding: 0;
     }
-
-
 </style>
-
-<!-- property area -->
-<div class="content-area single-property" style="background-color: #FCFCFC;">
-    &nbsp;
-
+<!-- Sub banner start -->
+<div class="sub-banner">
     <div class="container">
-
-        <div class="clearfix padding-top-40">
-            <nav aria-label="breadcrumb padding-top-40">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="@Url.Action("home","Home")">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="#">Chi tiết</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tin đăng-@Model.MaTin</li>
-                </ol>
-            </nav>
-            <div class="col-md-8 single-property-content prp-style-2">
-
-                <div class="">
-                    <div class="row">
-                        <div class="light-slide-item">
-                            <div class="clearfix">
-                                @{ var iamge = Model.Image.Split(',');
-
-                                }
-
-                                <div class="slideshow-container">
-                                    @foreach (var i in iamge)
-                                    {
-                                        <div class="mySlides1">
-                                            <img src="~/Content/assets/img/uploadimage/@i" style="width: 100%;height:370px;">
-                                        </div>
-                                    }
-
-
-                                    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-                                    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="row" style="margin-left:0">
-                            <h4>@Model.TieuDe</h4><br />
-                            <h5><img src="~/Content/assets/img/icon/pricesmall.png">  @Html.FormatValue(Model.GiaTien, "{0:#,###}") VND/Tháng </h5>
-                            <h5><img src="~/Content/assets/img/icon/area.png">   @Model.DienTich m </h5>
-                            <h5><img src="~/Content/assets/img/icon/addresssmal.png">  @Model.DiaChi </h5>
-                        </div>
-                        @{
-                            DateTime startTime = DateTime.Now;
-                            DateTime endTime = @Model.NgayDang;
-                            TimeSpan span = startTime.Subtract(endTime);
-
-                        }
-                        @if (Model.SoNgay < span.Days)
-                        {
-                            <div id="da_het_han"></div>
-                        }
-
-                    </div>
-
-                    <div class="single-property-wrapper">
-
-                        <div class="section">
-                            <h4 class="s-property-title">Thông Tin Mô Tả</h4>
-                            <div class="s-property-content">
-
-                                <p>  @Html.Raw(Model.MoTa)</p>
-                            </div>
-                        </div>
-                        <!-- End description area  -->
-
-                        <div class="section additional-details">
-
-                            <h4 class="s-property-title">Đặc Điểm Tin</h4>
-
-                            <ul class="additional-details-list clearfix">
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Mã tin</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">@Model.MaTin</span>
-                                </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Chuyên mục</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">@Model.ChuyenMuc</span>
-                                </li>
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Ngày đăng</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"> @Model.NgayDang</span>
-                                </li>
-
-                                <li>
-                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Người đăng</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">@Model.Name</span>
-                                </li>
-
-
-
-                            </ul>
-                        </div>
-                        <!-- End additional-details area  -->
-                        @helper truncate(String input, int length)
-                        {if (input.Length < length)
-                            {
-                                @input }
-                            else
-                            {
-                                @input.Substring(0, length) <text>...</text>}
-                        }
-                        <!-- Tin Liên Quan-->
-                        <div class="section additional-details">
-
-                            <h4 class="s-property-title">Những tin Liên Quan</h4>
-                            <div id="list-type" class="proerty-th-list">
-
-                                @{ var tinlienquan = ViewData["TinLienQuan"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
-                                @for (int i = 0; i < 6; i++)
-                                {
-                                    <div style="height:205px !important" class="col-sm-6 col-md-4 p0">
-                                        <div style="height: 205px; padding: 0px 10px !important; margin-bottom: 15px !important; " class="box-two proerty-item">
-                                            @{ var image = tinlienquan[i].Image.Split(','); }
-                                            <div class="item-thumb">
-                                                <a href="@Url.Action("Item", "Details", new { id = tinlienquan[i].MaTin })"><img src="~/Content/assets/img/uploadimage/@image[0]" width="260" height="200"></a>
-                                            </div>
-
-                                            <div class="item-entry overflow">
-                                                <p style="height:80px;"><a href="#"> @truncate(tinlienquan[i].TieuDe, 80)</a></p>
-                                                <div class="dot-hr"></div>
-                                                <span class="pull-left"><b> Area :</b>  @tinlienquan[i].DienTich m</span>
-                                                <span style="font-weight:600;color:#FDC600" class="pull-right">  @Html.FormatValue(tinlienquan[i].GiaTien, "{0:#,###}") VND/Tháng</span>
-                                                <p style="display: none; height: 10px; padding-top: 0px !important; "> </p>
-                                                <div>
-                                                    <div style="height: 40px">
-                                                        <img src="~/Content/assets/img/icon/addresssmal.png">  @tinlienquan[i].DiaChi<br />
-                                                    </div>
-                                                    <div>
-                                                        <img src="~/Content/assets/img/icon/user.png"> @tinlienquan[i].Name
-                                                    </div>
-
-
-
-
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-
-                        </div>
-                        <!-- End tin liên Quan-->
-
-                    </div>
-                </div>
-
-            </div>
-            @*thong tin cơ bản*@
-            <div class="col-md-4 p0">
-                <aside class="sidebar sidebar-property blog-asside-right property-style2">
-                    <div class="dealer-widget">
-                        <div class="dealer-content">
-                            <div class="inner-wrapper">
-
-                                <div class="dealer-section-space">
-                                    <span>Thông Tin</span>
-                                </div>
-                                <div class="clear">
-                                    <div class="col-xs-4 col-sm-4 dealer-face">
-                                        <a href="">
-                                            <img src="~/Content/assets/img/uploadimage/@Model.AspNetUsers.Image" class="img-circle">
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-8 col-sm-8 ">
-                                        <h3 class="dealer-name">
-                                            <a href="">Người Đăng Tin</a>
-                                            <span>@Model.Name</span>
-                                        </h3>
-                                        <div class="dealer-social-media">
-                                            <a class="twitter" target="_blank" href="">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a class="facebook" target="_blank" href="">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                            <a class="gplus" target="_blank" href="">
-                                                <i class="fa fa-google-plus"></i>
-                                            </a>
-                                            <a class="linkedin" target="_blank" href="">
-                                                <i class="fa fa-linkedin"></i>
-                                            </a>
-                                            <a class="instagram" target="_blank" href="">
-                                                <i class="fa fa-instagram"></i>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="clear">
-                                    <ul class="dealer-contacts">
-                                        <li><i class="pe-7s-map-marker strong"> </i> @Model.Name</li>
-                                        <li><i class="pe-7s-mail strong"> </i>@Model.email</li>
-                                        <li><i class="pe-7s-call strong"> </i>@Model.Sdt</li>
-                                    </ul>
-                                    <p>Thông tin chi tiết liên hệ số điện thoại hoặc địa chỉ email ...</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Những tin gần đây</h3>
-                        </div>
-
-                        <div class="panel-body recent-property-widget">
-                            <ul>
-                                @{ var tinmoi = ViewData["TinMoi"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
-                                @for (int i = 1; i < 6; i++)
-                                {
-                                    <li>
-                                        @{ var anh = tinmoi[i].Image.Split(','); }
-                                        <div>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="#"><img src="~/Content/assets/img/uploadimage/@anh[0]" width="84" height="63"></a>
-
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})"> @truncate(tinmoi[i].TieuDe, 40) </a><br />
-                                                <span class="property-price" style="color:#FDC600;"> @Html.FormatValue(tinmoi[i].GiaTien, "{0:#,###}") VND/Tháng</span>
-                                            </div>
-                                            <hr />
-
-                                        </div>
-
-                                        <div style="clear:both"></div>
-
-
-
-                                    </li>
-                                }
-
-
-                            </ul>
-                        </div>
-                    </div>
-
-
-
-
-
-                </aside>
-            </div>
-
-
+        <div class="breadcrumb-area">
+            <h1>Thông tin phòng chi tiết</h1>
+            <ul class="breadcrumbs">
+                <li><a href="/Home/Home">Trang chủ</a></li>
+                <li class="active">Thông tin</li>
+            </ul>
         </div>
-
-        @{ Html.RenderAction("PartialThongKe", "Home"); }
     </div>
 </div>
-@*<div class="map" id="mapCanvas"></div>*@
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtaV6ZrxKqRZlAim1ABFPBXDNCCKIEZ18&callback=initMap"></script>
-<script src="/assets/client/js/controller/contactController.js"></script>
-<script>
-        // This example displays a marker at the center of Australia.
-        // When the user clicks the marker, an info window opens.
-        //21.046300, 105.793266
-        function initMap() {
-            var uluru = { lat: 21.046300, lng: 105.793266 };
-            var map = new google.maps.Map(document.getElementById('mapCanvas'), {
-                zoom: 18,
-                center: uluru
-            });
-            var contentString = '@Html.Raw(Model.DiaChi)';
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map,
-                title: 'Địa chỉ'
-            });
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
-        }
-        google.maps.event.addDomListener(window, 'load', initMap);
-</script>
+<!-- Sub banner end -->
+<!-- Properties details page start -->
+<div class="properties-details-page content-area-15">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-xs-12 slider">
+                <div id="propertiesDetailsSlider" class="carousel properties-details-sliders slide mb-30">
+                    <div class="heading-properties">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-left col-7">
+                                    <h3>@Model.TieuDe</h3>
+                                    <p><i class="fa fa-map-marker"></i>  @Model.DiaChi</p>
+                                </div>
+                                <div class="p-r col-5">
+                                    <h3>@Html.FormatValue(Model.GiaTien, "{0:#,###}") VND/Tháng</h3>
+                                    <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    
+                    <!-- main slider carousel items -->
+                     <div class="carousel-inner">
+                        <div class="row">
+                            <div class="light-slide-item">
+                                <div class="clearfix">
+                                    @{ var iamge = Model.Image.Split(',');
+
+                                    }
+
+                                    <div class="slideshow-container">
+                                        @foreach (var i in iamge)
+                                        {
+                                            <div class="mySlides1 item carousel-item">
+                                                <img src="~/Content/assets/img/uploadimage/@i" style="width: 100%;height:auto;">
+                                            </div>
+                                        }
+
+
+                                        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- main slider carousel nav controls -->
+
+                </div>
+                <!-- Search area start -->
+                <!-- Tabbing box start -->
+                <div class="tabbing tabbing-box mb-60">
+                    <ul class="nav nav-tabs" id="carTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="one" aria-selected="false">Thông tin mô tả</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="5-tab" data-toggle="tab" href="#5" role="tab" aria-controls="5" aria-selected="true">Địa chỉ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="6-tab" data-toggle="tab" href="#6" role="tab" aria-controls="6" aria-selected="true">Tin liên quan</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="carTabContent">
+                        <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="one-tab">
+                            <h3 class="heading-3">Mô tả chi tiết tin đăng</h3>
+                            <p>
+                                @Html.Raw(Model.MoTa)
+                            </p>
+                        </div>
+
+
+
+                        <div class="tab-pane fade " id="5" role="tabpanel" aria-labelledby="5-tab">
+                            <div class="section location">
+                                <h3 class="heading-3">Property Location</h3>
+                                <div class="map">
+                                    <div id="contactMap" class="contact-map"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="6" role="tabpanel" aria-labelledby="6-tab">
+                            <div class="related-properties">
+                                <h3 class="heading-3">Related Properties</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="property-box">
+                                            <div class="property-thumbnail">
+                                                <a href="properties-details.html" class="property-img">
+                                                    <div class="listing-badges">
+                                                        <span class="featured">Featured</span>
+                                                    </div>
+                                                    <div class="tag-for">For Sale</div>
+                                                    <div class="plan-price"><sup>$</sup>820<span>/month</span> </div>
+                                                    <img src="http://placehold.it/350x233" alt="property-1" class="img-fluid">
+                                                </a>
+                                                <div class="property-overlay">
+                                                    <a href="properties-details.html" class="overlay-link">
+                                                        <i class="fa fa-link"></i>
+                                                    </a>
+                                                    <div class="property-magnify-gallery">
+                                                        <a href="http://placehold.it/750x540" class="overlay-link">
+                                                            <i class="fa fa-expand"></i>
+                                                        </a>
+                                                        <a href="http://placehold.it/750x540" class="hidden"></a>
+                                                        <a href="http://placehold.it/750x540" class="hidden"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="detail">
+                                                <h1 class="title">
+                                                    <a href="properties-details.html">Relaxing Apartment</a>
+                                                </h1>
+                                                <div class="location">
+                                                    <a href="properties-details.html">
+                                                        <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i>123 Kathal St. Tampa City,
+                                                    </a>
+                                                </div>
+                                                <ul class="facilities-list clearfix">
+                                                    <li>
+                                                        <i class="flaticon-bed"></i> 3 Bedrooms
+                                                    </li>
+                                                    <li>
+                                                        <i class="flaticon-bath"></i> 2 Bathrooms
+                                                    </li>
+                                                    <li>
+                                                        <i class="flaticon-square-layouting-with-black-square-in-east-area"></i> Sq Ft:3400
+                                                    </li>
+                                                    <li>
+                                                        <i class="flaticon-car-repair"></i> 1 Garage
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="footer">
+                                                <a href="#">
+                                                    <i class="fa fa-user"></i> Jhon Doe
+                                                </a>
+                                                <span>
+                                                    <i class="fa fa-calendar-o"></i> 2 day ago
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-content">
+                    <div class="section-header"><h3 class="section-title">Đặc điểm tin đăng</h3></div>
+                    <table class="table">
+                        <tr>
+                            <td class="name">Mã tin:</td>
+                            <td>#@Model.MaTin</td>
+                        </tr>
+                        <tr>
+                            <td class="name">Khu vực</td>
+                            <td> Cho thuê phòng trọ Hồ Chí Minh </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Đối tượng thuê:</td>
+                            <td>Tất cả</td>
+                        </tr>
+                        <tr>
+                            <td class="name">Gói tin:</td>
+                            <td><span style="color: #E13427;">@Model.Loai.TenLoai</span></td>
+                        </tr>
+                        <tr>
+                            <td class="name">Ngày đăng:</td>
+                            <td><time title="Chủ Nhật, 14:19 28/11/2021">@Model.NgayDang</time></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="sidebar mbl">
+            <!-- Categories start -->
+            <div class="user-profile-box mrb">
+                <!--header -->
+                <div class="header clearfix">
+                    <h2>@Model.Name</h2>
+
+                    @{
+                        if (@Model.AspNetUsers.Image == null)
+                        {
+                            <img class="img-fluid profile-img" src="~/assets/img/149071.png" alt="Ảnh người dùng">
+                        }
+                        else
+                        {
+                            <img class="img-fluid profile-img" src="~/Content/assets/img/uploadimage/@Model.AspNetUsers.Image" alt="Ảnh người dùng">
+                        }
+                    }
+                </div>
+                <!-- Detail -->
+                <div class="detail clearfix" style="padding-left: 15px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <b>Tên:</b>
+                            </td>
+                            <td>
+
+                                <b>Đinh Xuân Quang</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Điện thoại:</b>
+                            </td>
+                            <td>
+                                <a href="tel:0973050592">@Model.Sdt</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Zalo, Facebook:</b>
+                            </td>
+                            <td>
+
+
+                                <a href="@Model.Zalo"><img src="~/assets/img/zalo.png" width="40px" /></a><a href="@Model." style="margin-left:10px"><img src="~/assets/img/facebook.svg.png" width="40px" /></a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="social-list widget clearfix">
+                <h5 class="sidebar-title">Thông tin cá nhân</h5>
+                <ul>
+                    <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <!-- Recent posts start -->
+            @helper truncate(String input, int length)
+            {if (input.Length < length)
+                {
+                    @input }
+                else
+                {
+                    @input.Substring(0, length) <text>...</text>}
+            }
+            <div class="widget recent-posts">
+                <h5 class="sidebar-title">Tin gần đây</h5>
+                @{ var tinmoi = ViewData["TinMoi"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
+                @for (int i = 1; i < 6; i++)
+                {
+                    var anh = tinmoi[i].Image.Split(',');
+                    <div class="media mb-4">
+                        <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})">
+                            <img src="~/Content/assets/img/uploadimage/@anh[0]" height="50px" alt="sub-property">
+                        </a>
+                        <div class="media-body align-self-center">
+                            <h5>
+                                <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})"> @truncate(tinmoi[i].TieuDe, 20) </a>
+                            </h5>
+                            <p>@Html.FormatValue(tinmoi[i].GiaTien, "{0:#,###}") VND/Tháng</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Social list start -->
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- Properties details page end -->
 
 
 <script>
     var slideIndex = [1, 1];
-    var slideId = ["mySlides1", "mySlides2"]
+                var slideId = ["mySlides1", "mySlides2"]
     showSlides(1, 0);
-    showSlides(1, 1);
-    function plusSlides(n, no) {
-        showSlides(slideIndex[no] += n, no);
-    }
-    function showSlides(n, no) {
-        var i;
-        var x = document.getElementsByClassName(slideId[no]);
-        if (n > x.length) { slideIndex[no] = 1 }
-        if (n < 1) { slideIndex[no] = x.length }
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        x[slideIndex[no] - 1].style.display = "block";
-    }
+                showSlides(1, 1);
+                function plusSlides(n, no) {
+                    showSlides(slideIndex[no] += n, no);
+                }
+                function showSlides(n, no) {
+                    var i;
+                    var x = document.getElementsByClassName(slideId[no]);
+                    if (n > x.length) { slideIndex[no] = 1 }
+                    if (n < 1) { slideIndex[no] = x.length }
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    x[slideIndex[no] - 1].style.display = "block";
+                }
 </script>
