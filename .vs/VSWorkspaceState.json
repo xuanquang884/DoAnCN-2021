@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TimKiemPhongTro",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Areas",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Areas\\Admin",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Areas\\Admin\\Views",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Areas\\Admin\\Views\\Home",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Views",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Views\\Home",
+    "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Views\\Shared"
+  ],
+  "SelectedNode": "\\TimKiemPhongTro\\WebTimKiemPhongTro\\Views\\Shared\\_Layout.cshtml",
+  "PreviewInSolutionExplorer": false
+}
