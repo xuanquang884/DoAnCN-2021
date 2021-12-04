@@ -50,7 +50,6 @@ namespace WebTimKiemPhongTro.Models
         [StringLength(256)]
         public string Image { get; set; }
 
-
         [StringLength(256)]
         public string Facebook { get; set; }
 

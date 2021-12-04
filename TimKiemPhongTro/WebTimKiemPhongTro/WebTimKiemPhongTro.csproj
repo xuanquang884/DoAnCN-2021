@@ -239,6 +239,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\TinDangsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -248,10 +249,11 @@
     </Compile>
     <Compile Include="Models\AccountAdmin.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetUsers.cs" />
+    <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\GiaoDich.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Lien_He.cs" />
     <Compile Include="Models\Loai.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TinDang.cs" />
@@ -3052,6 +3054,8 @@
     <Content Include="Views\PhiDangtin\Index.cshtml" />
     <Content Include="Views\Home\PartialThongKe.cshtml" />
     <Content Include="Views\Shared\_LoginAndRegisterView.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

@@ -56,11 +56,11 @@
         public virtual ICollection<GiaoDich> GiaoDich { get; set; }
 
         public virtual Loai Loai { get; set; }
-        public string Zalo;
-        public string Facebook;
         public string Name;
         public string Sdt;
         public string email;
+        public string Facebook;
+        public string Zalo;
         public List<Loai> ListLoaiTin;
     }
 }

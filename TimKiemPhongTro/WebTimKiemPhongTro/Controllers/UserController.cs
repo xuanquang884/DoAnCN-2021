@@ -60,10 +60,10 @@ namespace WebTimKiemPhongTro.Controllers
         public async Task<ActionResult> ImageSave(TinDang obj,string SoNgay,string LoaiTin)       {
 
 
-            ModelState.Remove("NgayDang");
+            /*ModelState.Remove("NgayDang");
             ModelState.Remove("MaNguoiDang");
             ModelState.Remove("MaTin");
-            ModelState.Remove("Image");
+            ModelState.Remove("Image");*/
 
             if (ModelState.IsValid)
             {

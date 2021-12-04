@@ -17,7 +17,7 @@ namespace WebTimKiemPhongTro.Models
         public virtual DbSet<GiaoDich> GiaoDich { get; set; }
         public virtual DbSet<Loai> Loai { get; set; }
         public virtual DbSet<TinDang> TinDang { get; set; }
-
+        public virtual DbSet<Lien_He> Lien_He { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetUsers>()
