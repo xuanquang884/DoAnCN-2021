@@ -33,7 +33,7 @@
     .input2 {
         background-color: white;
         color: black;
-        border: 2px solid #DC143C;
+        border: 2px solid double;
         border-radius: 8px;
     }
 </style>
@@ -63,6 +63,7 @@
                                             @{
                                                 if (@item.Image == null)
                                                 {
+
                                                     <img class="img-fluid" src="~/assets/img/149071.png" alt="Ảnh người dùng">
                                                 }
                                                 else
@@ -91,7 +92,7 @@
                                         <button href="" class="them button" id="congtien" data-productid="@item.Id">Thêm</button>
                                     </td>
                                     <td class="candidate-list-favourite-time text-center">
-                                        <a class="candidate-list-favourite order-2 text-danger" href="#"></a>
+                                        <a class="candidate-list-favourite order-2 text-danger" href="#"></a> 
                                         @{
                                             if (item.ViTien == 0)
                                             {

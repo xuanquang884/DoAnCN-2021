@@ -39,7 +39,7 @@
                 <div class="search-area search-area-6">
                     <div class="tab-box">
                         <div class="search-area-inner">
-                            @using (Html.BeginForm("search", "Details", new { @class = "form-inline" }, FormMethod.Get))
+                            @using (Html.BeginForm("search", "Home", new { @class = "form-inline" }, FormMethod.Get))
                             {
                                 <div class="search-contents">
                                     <form method="GET">
@@ -51,16 +51,8 @@
                                             </div>
                                             <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
                                                 <div class="form-group">
-                                                    <select class="selectpicker search-fields show-tick form-control Loai" id="basic" title="Loại" name="Loai">
-                                                        <option class="text-center">Phòng Trọ</option>
-                                                        <option class="text-center">Căn hộ Chung Cư</option>
-                                                        <option class="text-center">Nhà Nguyên Căn</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
-                                                <div class="form-group">
                                                     <select id="lunchBegins" class="selectpicker Quan search-fields" name="Quan" data-live-search="true" data-live-search-style="begins" title="Quận">
+                                                        <option label="Quận" class="text-center"></option>
                                                         <option class="text-center">Quận 1</option>
                                                         <option class="text-center">Quận 2</option>
                                                         <option class="text-center">Quận 3</option>
@@ -85,16 +77,28 @@
                                             </div>
                                             <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
                                                 <div class="form-group">
+                                                    <select class="selectpicker search-fields show-tick form-control Loai" id="basic" title="Loại" name="Loai">
+                                                        <option class="text-center" label="Loại Phòng"></option>
+                                                        <option class="text-center">Phòng Trọ</option>
+                                                        <option class="text-center">Căn hộ Chung Cư</option>
+                                                        <option class="text-center">Nhà Nguyên Căn</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-6 col-pad2">
+                                                <div class="form-group">
                                                     <!-- <select class="selectpicker " name="make"> -->
                                                     <select id="basic" title="Giá" class="selectpicker show-tick form-control search-fields" name="Gia">
+                                                        <option class="text-center" label="Giá"></option>
                                                         <option class="text-center" value="1000000">1.000.000</option>
-                                                        <option class="text-center" value="1500000">1.500.000</option>
-                                                        <option class="text-center" value="2500000">2.500.000</option>
+                                                        <option class="text-center" value="2000000">2.000.000</option>
                                                         <option class="text-center" value="3000000">3.000.000</option>
                                                         <option class="text-center" value="4000000">4.000.000</option>
-                                                        <option class="text-center" value="5500000">5.500.000</option>
+                                                        <option class="text-center" value="5000000">5.000.000</option>
                                                         <option class="text-center" value="6000000">6.000.000</option>
-                                                        <option class="text-center" value="7500000">7.500.000</option>
+                                                        <option class="text-center" value="7000000">7.000.000</option>
+                                                        <option class="text-center" value="8000000">8.000.000</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -133,8 +137,8 @@
                             TimeSpan span = startTime.Subtract(endTime); }
                         <div class="property-thumbnail">
                             <a href="@Url.Action("Item", "Details", new { id = item.MaTin })" class="property-img">
-                                 
-                                <img src="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" width="260" height="223" alt="property-box" class="img-fluid">
+
+                                <img style="width:350px;height:233px;" src="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" alt="property-box" class="img-fluid">
                             </a>
 
                         </div>
@@ -144,21 +148,22 @@
                             </h1>
                             <div class="location">
                                 <span class="pull-left"><b> Diện tích :</b> @item.DienTich m2  </span>  <br />
-                                <span ><b> Giá Phòng : </b>@Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
+                                <span><b> Giá Phòng : </b>@Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
                                 <a href="@Url.Action("Item", "Details", new { id = item.MaTin })">
                                     <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i> @truncate(item.DiaChi, 28)
                                 </a>
 
                             </div>
-                            
-                          
+
+
                         </div>
                         <div class="footer">
                             <a href="#">
-                                <i class="fa fa-user"> @item.Name </i> 
+                                <i class="fa fa-user"> @item.Name </i>
                             </a>
-                            <span><span style="float:right">@date(span)</span>
-                                <i class="fa fa-calendar-o"></i>       
+                            <span>
+                                <span style="float:right">@date(span)</span>
+                                <i class="fa fa-calendar-o"></i>
                                 @helper truncate(String input, int length)
                                 {if (input.Length < length)
                                     {
@@ -193,7 +198,7 @@
                     <nav aria-label="Page navigation example">
                         @*Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount*@
                         <ul class="pagination">
-                            <li class="page-item" >@Html.PagedListPager(Model, page => Url.Action("home", new {@class= "page-link", page }))</li>
+                            @Html.PagedListPager(Model, page => Url.Action("home", new { @class = "page-link", page }))
                         </ul>
                     </nav>
                 </div>
@@ -251,6 +256,7 @@
 <div class="agent content-area">
     <div class="container">
         <div class="main-title">
+            <br />
             <h1>Nhà Phát Triển</h1>
         </div>
         <div class="row">
@@ -260,7 +266,7 @@
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
                 <div class="agent-2">
                     <div class="agent-photo">
-                        <img src="http://placehold.it/255x285" alt="agent-grid-2" class="img-fluid">
+                        <img src="~/assets/img/149071.png" alt="agent-grid-2" class="img-fluid">
                         <ul class="social-list clearfix">
                             <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
@@ -268,7 +274,7 @@
                         </ul>
                     </div>
                     <div class="agent-details">
-                        <h5><a href="agent-detail.html">Martin Smith</a></h5>
+                        <h5><a href="agent-detail.html">Đinh Xuân Quang</a></h5>
                         <p>Web Developer</p>
                     </div>
                 </div>
@@ -276,7 +282,7 @@
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInRight delay-04s">
                 <div class="agent-2">
                     <div class="agent-photo">
-                        <img src="http://placehold.it/255x285" alt="agent-grid-2" class="img-fluid">
+                        <img src="~/assets/img/149071.png" alt="agent-grid-2" class="img-fluid">
                         <ul class="social-list clearfix">
                             <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
@@ -284,13 +290,12 @@
                         </ul>
                     </div>
                     <div class="agent-details">
-                        <h5><a href="agent-detail.html">Brandon Miller</a></h5>
-                        <p>Office Manager</p>
+                        <h5><a href="agent-detail.html">Nguyễn Minh Quang</a></h5>
+                        <p>Web Developer</p>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInRight delay-04s">
-            </div>
+
         </div>
     </div>
 </div>
@@ -302,13 +307,13 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12">
                 <div class="intro-text">
-                    <a href="index.html" class="logos"><img src="assets/img/logos/logo-white.png" alt="logo"></a>
-                    <a href="index.html" class="d-none-768"><img src="assets/img/logos/logo-white.png" alt="logo"></a>
-                    <span>Looking To Sell Or Rent Your Property?</span>
+                    <a href="index.html" class="logos"><img src="~/assets/img/logos/logo-white.png" alt="logo"></a>
+                    <a href="index.html" class="d-none-768"><img src="~/assets/img/logos/logo-white.png" alt="logo"></a>
+                    <span>Bạn muốn cho thuê trọ, nhà nguyễn căn hay là căn hộ</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12">
-                <a href="#" class="btn btn-md sn">Submit Now</a>
+                <a href="/User/DangTin" class="btn btn-md sn">Đăng tin ngay</a>
             </div>
         </div>
     </div>

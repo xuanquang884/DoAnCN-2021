@@ -4,17 +4,17 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+@Styles.Render("~/Content/Giaodich.css")
 
-
-<h3 class="text-center" >Bạn có muốn xóa tin này không?</h3>
+<h3 class="text-center">Bạn có muốn xóa tin này không?</h3>
 <div>
-   
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.Label("Email")
         </dt>
-        
+
         <dd>
             @Html.DisplayFor(model => model.AspNetUsers.Email)
         </dd>
@@ -83,7 +83,7 @@
             @Html.DisplayFor(model => model.DiaChi)
         </dd>
 
-      
+
 
         <dt>
             @Html.Label("Số Ngày Đăng")
@@ -115,7 +115,7 @@
         <button type="button" class="btn btn-default" style="color: #ffffff; background: #00aecd94; box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12); padding: 0.5em 1em; display: inline-block; margin: 0.5em 0;">@Html.ActionLink("Hủy", "Taisancuatoi", new { id = Model.MaTin })</button>
     </div>
 }
-@Styles.Render("~/Content/Giaodich.css")
+
 @section scripts{
     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
     <script>

@@ -47,16 +47,16 @@
                         </div>
                         <!-- Detail -->
                         <div class="detail clearfix">
-                            <h6><span style="font-weight:900">Tên người dùng:</span> @item.Name</h6>
+                            <h6><span style="font-weight:900"> Tên người dùng:</span> @item.Name</h6>
                             <h6>
                                 @{
                                     if (item.ViTien == 0)
                                     {
-                                        <span style="font-weight:900">Số dư:</span><span> 0 /VND</span>
+                                        <span style="font-weight:900"> Số dư:</span><span> 0 /VND</span>
                                     }
                                     else
                                     {
-                                        <span style="font-weight:900">Số dư:</span><span> @Html.FormatValue(@item.ViTien, "{0:#,###}")</span>
+                                        <span style="font-weight:900"> Số dư:</span><span> @Html.FormatValue(@item.ViTien, "{0:#,###}")</span>
                                         <span>/VNĐ</span>
                                     }
                                 }
@@ -64,7 +64,7 @@
                             </h6>
                             <ul>
                                 <li>
-                                    <a href="/User/ProfileUser" class="active">
+                                    <a href="/User/ProfileUser" >
                                         <i class="flaticon-user"></i>Thông tin cá nhân
                                     </a>
                                 </li>
@@ -111,11 +111,11 @@
                                     </div>
                                 </div>
                                 @*<div class="col-lg-12 ">
-                                    <div class="form-group name">
-                                        <label>Tên người dùng :</label>
-                                        <input readonly type="text" name="name" class="form-control" value="@item.UserName">
-                                    </div>
-                                </div>*@
+                                        <div class="form-group name">
+                                            <label>Tên người dùng :</label>
+                                            <input readonly type="text" name="name" class="form-control" value="@item.UserName">
+                                        </div>
+                                    </div>*@
                                 <div class="col-lg-12">
                                     <div class="form-group email">
                                         <label>Facebook :</label>

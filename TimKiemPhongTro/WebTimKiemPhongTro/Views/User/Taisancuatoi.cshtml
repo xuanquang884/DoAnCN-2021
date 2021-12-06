@@ -1,4 +1,5 @@
 ﻿@model PagedList.IPagedList<WebTimKiemPhongTro.Models.TinDang>
+@*@model IEnumerable<WebTimKiemPhongTro.Models.AspNetUsers>*@
 @using PagedList;
 @using PagedList.Mvc;
 
@@ -12,18 +13,156 @@
     {
         @input.Substring(0, length) <text>...</text>}
 }
-<body>
-    @{ 
-      
-    }
 
+<style>
+    button {
+        color: white;
+    }
+    h6{margin-left:20px}
+</style>
+
+@foreach (var item in Model)
+{
+    <!-- Sub banner start -->
+    <div class="sub-banner">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>Thông Tin Cá Nhân</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="/Home/Home">Trang chủ</a></li>
+                    <li class="active">Hồ sơ của tôi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Sub banner end -->
+    <!-- User page start -->
+    <div class="user-page content-area-7 submit-property">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="user-profile-box mrb">
+                        <!--header -->
+                        <div class="header clearfix">
+                            <h2>@item.AspNetUsers.Name</h2>
+                            @{
+                                if (@item.AspNetUsers.Image == null)
+                                {
+                                    <img class="img-fluid profile-img" src="~/assets/img/149071.png" alt="Ảnh người dùng">
+                                }
+                                else
+                                {
+                                    <img class="img-fluid profile-img" src="~/Content/assets/img/uploadimage/@item.AspNetUsers.Image" alt="Ảnh người dùng">
+                                }
+                            }
+                        </div>
+                        <!-- Detail -->
+                        <div class="detail clearfix">
+                            <h6><span style="font-weight:900"> Tên người dùng:</span> @item.AspNetUsers.Name</h6>
+                            <h6>
+                                @{
+                                    if (item.AspNetUsers.ViTien == 0)
+                                    {
+                                        <span style="font-weight:900"> Số dư:</span><span> 0 /VND</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="font-weight:900"> Số dư:</span><span> @Html.FormatValue(item.AspNetUsers.ViTien, "{0:#,###}")</span>
+                                        <span>/VNĐ</span>
+                                    }
+                                }
+
+                            </h6>
+                            <ul>
+                                <li>
+                                    <a href="/User/ProfileUser" >
+                                        <i class="flaticon-user"></i>Thông tin cá nhân
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/User/Taisancuatoi">
+                                        <i class="flaticon-house"></i>Quản lý tin đăng
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/User/DangTin">
+                                        <i class="flaticon-add"></i>Đăng tin mới
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Manage/ChangePassword">
+                                        <i class="flaticon-locked-padlock"></i>Đổi mật khẩu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                                        <i class="flaticon-logout"></i>Thoát
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="my-properties">
+                        @{ var image = item.Image.Split(','); }
+                        <table class="manage-table">
+                            <thead>
+                                <tr>
+                                    <th>Favorited Property</th>
+                                    <th></th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="responsive-table">
+                                <tr>
+                                    <td class="listing-photoo">
+                                        <img alt="my-properties-3" src="~/Content/assets/img/uploadimage/@image.FirstOrDefault()" class="img-fluid">
+                                    </td>
+                                    <td class="title-container">
+                                        <h5><a href="@Url.Action("Item", "Details", new { id = item.MaTin })">@truncate(item.TieuDe, 25)</a></h5>
+                                        <h6>@Html.FormatValue(@item.GiaTien, "{0:#,###}")</h6>
+                                        <p><i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i>  @truncate(item.DiaChi, 28) </p>
+                                    </td>
+                                    <td class="date">
+                                        @item.NgayDang
+                                    </td>
+                                    <td class="action">
+                                        <ul>
+                                            <li>
+                                                <i class="fa fa-pencil"></i> @Html.ActionLink("Edit", "EditTindang", new { id = item.MaTin })
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-remove"></i>@Html.ActionLink("Delete", "Delete", new { id = item.MaTin })
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <br />
+                    <div class="pagination-box text-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi", new { @class = "page-link", page  }))
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ }
     <!-- property area -->
-    <div class="content-area recent-property" style="background-color: #FFF;">
+    <!--<div class="content-area recent-property" style="background-color: #FFF;">
         <div class="container">
             <div class="row">
                 @foreach (var item in Model)
                 {
-                   
                     <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
                         <div class="row">
                             <div id="list-type" class="proerty-th-list">
@@ -51,6 +190,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-md-3 p0 padding-top-40">
                         <div class="row">
@@ -87,6 +227,5 @@
             </div>
         </div>
     </div>
-    }
-    
-</body>
+    }-->
+

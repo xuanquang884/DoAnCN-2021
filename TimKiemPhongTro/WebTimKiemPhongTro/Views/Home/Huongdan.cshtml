@@ -35,10 +35,21 @@
                     <div>
                         <p>
                             <b> Thông qua 1 trong 3 Ví điện tử: Momo, ViettelPay, ZaloPay hoặc AirPay</b> <br />
-                            Bạn hãy Quét mã dưới đây bằng ứng dụng Momo (Vietelpay, Zalopay hoặc Airpay). Chọn mục Chuyển tiền và chuyển số tiền mà bạn muốn nạp. Trong trường hợp không quét mã được, bạn có thể chuyển trực tiếp qua SĐT: 0328265662
+                            Bạn hãy Quét mã dưới đây bằng ứng dụng Momo (VietelPay, ZaloPay). Chọn mục Chuyển tiền và chuyển số tiền mà bạn muốn nạp. Trong trường hợp không quét mã được, bạn có thể chuyển trực tiếp qua SĐT: 0328265662
                             <br />
                         </p>
-                        <p> <b>Với nội dung chuyển khoản là:</b> @User.Identity.GetUserName() + @DateTime.Now.ToString("dd/MM/yyyy")</p>
+                        @{
+                            if (@User.Identity.GetUserId() != null)
+                            {
+                                <p> <b>Với nội dung chuyển khoản là:</b> @User.Identity.GetUserName() + @DateTime.Now.ToString("dd/MM/yyyy")</p>
+
+                            }
+                            else if (@User.Identity.GetUserId() == null)
+                            {
+                                <p> <b>Với nội dung chuyển khoản là:</b> Gmail đăng kí của bạn + @DateTime.Now.ToString("dd/MM/yyyy")</p>
+                            }
+                        }
+
 
 
 
@@ -70,7 +81,8 @@
                     <br />
                     <div style="margin-bottom:30px;">
                         <p>
-                            Lưu ý: Thời gian duyệt vào tài khoản là từ 2-5 h (Trong giờ hành chính từ 7h sáng đến 12h khuya). Tuy nhiên có thể kéo dài đến 8-10h ngày nếu mình có việc bận. Nếu sau 24h vẫn chưa có tiền vào tài khoản, bạn có thể liên hệ với mình qua đường link Facebook hoặc Chat trực tiếp trên Website để mình kiểm tra giao dịch (nếu bị sót) nhé!
+                            Lưu ý: Thời gian duyệt vào tài khoản là từ 2-5 h (Trong giờ hành chính từ 7h sáng đến 21h tối).
+                            Tuy nhiên có thể kéo dài đến 8-10h ngày nếu mình có việc bận. Nếu sau 24h vẫn chưa có tiền vào tài khoản, bạn có thể liên hệ với mình qua đường link Facebook hoặc Chat trực tiếp trên Website để mình kiểm tra giao dịch (nếu có sai sót)!
                         </p>
                         <a href="https://www.facebook.com/zkyboy915">Facebook</a>
                     </div>

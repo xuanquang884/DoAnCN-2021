@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebTimKiemPhongTro.Models.Lien_He>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
+}
+
+<h2 class="text-center">Yêu cầu khách gửi</h2>
+
+<div class="container">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hoten)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Gmail)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NoiDung)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ngaytao)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hoten)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gmail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NoiDung)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ngaytao)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

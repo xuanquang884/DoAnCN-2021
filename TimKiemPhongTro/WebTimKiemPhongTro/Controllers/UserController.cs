@@ -40,18 +40,20 @@ namespace WebTimKiemPhongTro.Controllers
         public ActionResult DangTin()
         {
             var userID = User.Identity.GetUserId();
-            if (userID != null)
+            if (userID == null)
             {
-                ApplicationUser user =System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(userID);
+              
+                return RedirectToAction("Login", "Account");
+            }
+            else {
+                ApplicationUser user =
+               System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(
+               ).FindById(userID);
                 ViewBag.vitien = user.ViTien;
                 TinDang tin = new TinDang();
                 tin.ListLoaiTin = data.Loai.ToList();
                 return View(tin);
-                
-            }
-            else {
 
-                return RedirectToAction("Login", "Account");
             }
         
         }
@@ -60,10 +62,10 @@ namespace WebTimKiemPhongTro.Controllers
         public async Task<ActionResult> ImageSave(TinDang obj,string SoNgay,string LoaiTin)       {
 
 
-            /*ModelState.Remove("NgayDang");
+            ModelState.Remove("NgayDang");
             ModelState.Remove("MaNguoiDang");
             ModelState.Remove("MaTin");
-            ModelState.Remove("Image");*/
+            ModelState.Remove("Image");
 
             if (ModelState.IsValid)
             {
@@ -264,7 +266,7 @@ namespace WebTimKiemPhongTro.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edittindang([Bind(Include = "MaTin,TieuDe,ChuyenMuc,GiaTien,DienTich,MoTa,NgayDang,MaNguoiDang,DiaChi,Image,LoaiTin,SoNgay")] TinDang tinDang)
+        public ActionResult Edittindang([Bind(Include = "MaTin,TieuDe,ChuyenMuc,GiaTien,DienTich,MoTa,NgayDang,MaNguoiDang,DiaChi,Image,LoaiTin,SoNgay,Facebook,Zalo")] TinDang tinDang)
         {
             try
             {
@@ -310,7 +312,6 @@ namespace WebTimKiemPhongTro.Controllers
             return View(tinDang);
         }
 
-        // Delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -336,7 +337,6 @@ namespace WebTimKiemPhongTro.Controllers
             data.SaveChanges();
             return RedirectToAction("Taisancuatoi");
         }
-
         public ActionResult ProfileUser()
         {
             ApplicationUser currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
@@ -359,7 +359,7 @@ namespace WebTimKiemPhongTro.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Image,PasswordCon,ViTien,Facebook,Zalo")] AspNetUsers aspNetUsers)
+        public ActionResult EditProfile([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Image,PasswordCon,ViTien,Facebook,Twitter,Website,Fax")] AspNetUsers aspNetUsers)
         {
             try
             {

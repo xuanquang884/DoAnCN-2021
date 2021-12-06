@@ -103,10 +103,10 @@
                             </div>
                         </div>
                     </div>
-                   
-                    
+
+
                     <!-- main slider carousel items -->
-                     <div class="carousel-inner">
+                    <div class="carousel-inner">
                         <div class="row">
                             <div class="light-slide-item">
                                 <div class="clearfix">
@@ -118,7 +118,7 @@
                                         @foreach (var i in iamge)
                                         {
                                             <div class="mySlides1 item carousel-item">
-                                                <img src="~/Content/assets/img/uploadimage/@i" style="width: 100%;height:auto;">
+                                                <img src="~/Content/assets/img/uploadimage/@i" style="width: 729px; height: 486px;border:solid 3px">
                                             </div>
                                         }
 
@@ -160,7 +160,7 @@
 
                         <div class="tab-pane fade " id="5" role="tabpanel" aria-labelledby="5-tab">
                             <div class="section location">
-                                <h3 class="heading-3">Property Location</h3>
+                                <h3 class="heading-3">Google Map</h3>
                                 <div class="map">
                                     <div id="contactMap" class="contact-map"></div>
                                 </div>
@@ -168,72 +168,81 @@
                         </div>
                         <div class="tab-pane fade " id="6" role="tabpanel" aria-labelledby="6-tab">
                             <div class="related-properties">
-                                <h3 class="heading-3">Related Properties</h3>
+                                <h3 class="heading-3">Tin liên quan</h3>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="property-box">
-                                            <div class="property-thumbnail">
-                                                <a href="properties-details.html" class="property-img">
-                                                    <div class="listing-badges">
-                                                        <span class="featured">Featured</span>
-                                                    </div>
-                                                    <div class="tag-for">For Sale</div>
-                                                    <div class="plan-price"><sup>$</sup>820<span>/month</span> </div>
-                                                    <img src="http://placehold.it/350x233" alt="property-1" class="img-fluid">
-                                                </a>
-                                                <div class="property-overlay">
-                                                    <a href="properties-details.html" class="overlay-link">
-                                                        <i class="fa fa-link"></i>
+                                    @{
+                                        DateTime startTime = DateTime.Now;
+                                        DateTime endTime = Model.NgayDang;
+                                        TimeSpan span = startTime.Subtract(endTime);
+                                    }
+                                    @{ var tinlienquan = ViewData["TinLienQuan"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
+                                    @for (int i = 0; i < 2; i++)
+                                    {
+
+                                        <div class="col-md-6">
+                                            <div class="property-box">
+                                                <div class="property-thumbnail">
+                                                    @{ var image = tinlienquan[i].Image.Split(','); }
+                                                    <a href="@Url.Action("Item", "Details", new { id = tinlienquan[i].MaTin })" class="property-img">
+                                                        <div class="listing-badges">
+                                                            @{
+                                                                if (Model.Loai.MaLoai == 1)
+                                                                {
+                                                                    <span class="featured">Tin Vip</span>
+                                                                }
+                                                                else { }
+                                                            }
+
+                                                        </div>
+                                                        <img style="width:350px;height:233px;" src="~/Content/assets/img/uploadimage/@image[0]" alt="property-1" class="img-fluid">
                                                     </a>
-                                                    <div class="property-magnify-gallery">
-                                                        <a href="http://placehold.it/750x540" class="overlay-link">
-                                                            <i class="fa fa-expand"></i>
+                                                    <div class="property-overlay">
+                                                        <a href="properties-details.html" class="overlay-link">
+                                                            <i class="fa fa-link"></i>
                                                         </a>
-                                                        <a href="http://placehold.it/750x540" class="hidden"></a>
-                                                        <a href="http://placehold.it/750x540" class="hidden"></a>
+                                                        <div class="property-magnify-gallery">
+                                                            <a href="http://placehold.it/750x540" class="overlay-link">
+                                                                <i class="fa fa-expand"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="detail">
-                                                <h1 class="title">
-                                                    <a href="properties-details.html">Relaxing Apartment</a>
-                                                </h1>
-                                                <div class="location">
-                                                    <a href="properties-details.html">
-                                                        <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i>123 Kathal St. Tampa City,
-                                                    </a>
+                                                <div class="detail">
+                                                    <h1 class="title">
+                                                        <a href="properties-details.html">@truncate(tinlienquan[i].TieuDe, 25)</a>
+                                                    </h1>
+                                                    <div class="location">
+                                                        <span class="pull-left"><b> Diện tích :</b> @tinlienquan[i].DienTich m2  </span>  <br />
+                                                        <span><b> Giá Phòng : </b>@Html.FormatValue(tinlienquan[i].GiaTien, "{0:#,###}") VND/Tháng</span><br />
+                                                        <a href="@Url.Action("Item", "Details", new { id = tinlienquan[i].MaTin })">
+                                                            <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i> @truncate(tinlienquan[i].DiaChi, 28)
+                                                        </a>
+
+                                                    </div>
+
                                                 </div>
-                                                <ul class="facilities-list clearfix">
-                                                    <li>
-                                                        <i class="flaticon-bed"></i> 3 Bedrooms
-                                                    </li>
-                                                    <li>
-                                                        <i class="flaticon-bath"></i> 2 Bathrooms
-                                                    </li>
-                                                    <li>
-                                                        <i class="flaticon-square-layouting-with-black-square-in-east-area"></i> Sq Ft:3400
-                                                    </li>
-                                                    <li>
-                                                        <i class="flaticon-car-repair"></i> 1 Garage
-                                                    </li>
-                                                </ul>
+                                                <div class="footer">
+                                                    <a href="#">
+                                                        <i class="fa fa-user"> @tinlienquan[i].Name </i>
+                                                    </a>
+                                                    <span>
+                                                        <span style="float:right">@date(span)</span>
+                                                        <i class="fa fa-calendar-o"></i>
+
+                                                    </span>
+                                                </div>
+
                                             </div>
-                                            <div class="footer">
-                                                <a href="#">
-                                                    <i class="fa fa-user"></i> Jhon Doe
-                                                </a>
-                                                <span>
-                                                    <i class="fa fa-calendar-o"></i> 2 day ago
-                                                </span>
-                                            </div>
+
                                         </div>
-                                    </div>
+                                    }
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="section-content">
                     <div class="section-header"><h3 class="section-title">Đặc điểm tin đăng</h3></div>
                     <table class="table">
@@ -260,124 +269,141 @@
                     </table>
                 </div>
             </div>
-    <div class="col-lg-4 col-md-12">
-        <div class="sidebar mbl">
-            <!-- Categories start -->
-            <div class="user-profile-box mrb">
-                <!--header -->
-                <div class="header clearfix">
-                    <h2>@Model.Name</h2>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar mbl">
+                    <!-- Categories start -->
+                    <div class="user-profile-box mrb">
+                        <!--header -->
+                        <div class="header clearfix">
+                            <h2>@Model.Name</h2>
 
-                    @{
-                        if (@Model.AspNetUsers.Image == null)
-                        {
-                            <img class="img-fluid profile-img" src="~/assets/img/149071.png" alt="Ảnh người dùng">
-                        }
-                        else
-                        {
-                            <img class="img-fluid profile-img" src="~/Content/assets/img/uploadimage/@Model.AspNetUsers.Image" alt="Ảnh người dùng">
-                        }
-                    }
-                </div>
-                <!-- Detail -->
-                <div class="detail clearfix" style="padding-left: 15px;">
-                    <table>
-                        <tr>
-                            <td>
-                                <b>Tên:</b>
-                            </td>
-                            <td>
+                            @{
+                                if (@Model.AspNetUsers.Image == null)
+                                {
+                                    <img class="img-fluid profile-img" src="~/assets/img/149071.png" alt="Ảnh người dùng">
+                                }
+                                else
+                                {
+                                    <img class="img-fluid profile-img" src="~/Content/assets/img/uploadimage/@Model.AspNetUsers.Image" alt="Ảnh người dùng">
+                                }
+                            }
+                        </div>
+                        <!-- Detail -->
+                        <div class="detail clearfix" style="padding-left: 15px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <b>Tên:</b>
+                                    </td>
+                                    <td>
 
-                                <b>Đinh Xuân Quang</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Điện thoại:</b>
-                            </td>
-                            <td>
-                                <a href="tel:0973050592">@Model.Sdt</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Zalo, Facebook:</b>
-                            </td>
-                            <td>
+                                        <b>Đinh Xuân Quang</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Điện thoại:</b>
+                                    </td>
+                                    <td>
+                                        <a href="tel:0973050592">@Model.Sdt</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Zalo, Facebook:</b>
+                                    </td>
+                                    <td>
 
 
-                                <a href="@Model.Zalo"><img src="~/assets/img/zalo.png" width="40px" /></a><a href="@Model." style="margin-left:10px"><img src="~/assets/img/facebook.svg.png" width="40px" /></a>
-                            </td>
-                        </tr>
+                                        <a href="https://zalo.me/@Model.Zalo"><img src="~/assets/img/zalo.png" width="40px" /></a>
+                                        <a href="@Model.Facebook" style="margin-left:10px"><img src="~/assets/img/facebook.svg.png" width="40px" /></a>
+                                    </td>
+                                </tr>
 
-                    </table>
-                </div>
-            </div>
-            <div class="social-list widget clearfix">
-                <h5 class="sidebar-title">Thông tin cá nhân</h5>
-                <ul>
-                    <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
-                    <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-            <!-- Recent posts start -->
-            @helper truncate(String input, int length)
-            {if (input.Length < length)
-                {
-                    @input }
-                else
-                {
-                    @input.Substring(0, length) <text>...</text>}
-            }
-            <div class="widget recent-posts">
-                <h5 class="sidebar-title">Tin gần đây</h5>
-                @{ var tinmoi = ViewData["TinMoi"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
-                @for (int i = 1; i < 6; i++)
-                {
-                    var anh = tinmoi[i].Image.Split(',');
-                    <div class="media mb-4">
-                        <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})">
-                            <img src="~/Content/assets/img/uploadimage/@anh[0]" height="50px" alt="sub-property">
-                        </a>
-                        <div class="media-body align-self-center">
-                            <h5>
-                                <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})"> @truncate(tinmoi[i].TieuDe, 20) </a>
-                            </h5>
-                            <p>@Html.FormatValue(tinmoi[i].GiaTien, "{0:#,###}") VND/Tháng</p>
+                            </table>
                         </div>
                     </div>
-                }
+                    <div class="social-list widget clearfix">
+                        <h5 class="sidebar-title">Thông tin cá nhân</h5>
+                        <ul>
+                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- Recent posts start -->
+                    @helper truncate(String input, int length)
+                    {if (input.Length < length)
+                        {
+                            @input }
+                        else
+                        {
+                            @input.Substring(0, length) <text>...</text>}
+                    }
+                    @helper date(TimeSpan time)
+                    {if (time.Days >= 1)
+                        {
+                            @time.Days <text> Ngày trước </text> }
+                        else if (time.Hours > 1)
+                        {
+                            @time.Hours <text> Giờ trước </text> }
+                        else if (time.Minutes > 1)
+                        {
+                            @time.Minutes <text> Phút trước </text> }
+                        else
+                        {
+                            @time.Seconds <text> Giây trước </text>}
+
+
+                    }
+                    <div class="widget recent-posts">
+                        <h5 class="sidebar-title">Tin gần đây</h5>
+                        @{ var tinmoi = ViewData["TinMoi"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
+                        @for (int i = 1; i < 6; i++)
+                        {
+                            var anh = tinmoi[i].Image.Split(',');
+                            <div class="media mb-4">
+                                <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})">
+                                    <img src="~/Content/assets/img/uploadimage/@anh[0]" height="50px" alt="sub-property">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    <h5>
+                                        <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})"> @truncate(tinmoi[i].TieuDe, 20) </a>
+                                    </h5>
+                                    <p>@Html.FormatValue(tinmoi[i].GiaTien, "{0:#,###}") VND/Tháng</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Social list start -->
+
+                </div>
             </div>
-
-            <!-- Social list start -->
-
         </div>
     </div>
-</div>
-</div>
 </div>
 <!-- Properties details page end -->
 
 
 <script>
     var slideIndex = [1, 1];
-                var slideId = ["mySlides1", "mySlides2"]
+    var slideId = ["mySlides1", "mySlides2"]
     showSlides(1, 0);
-                showSlides(1, 1);
-                function plusSlides(n, no) {
-                    showSlides(slideIndex[no] += n, no);
-                }
-                function showSlides(n, no) {
-                    var i;
-                    var x = document.getElementsByClassName(slideId[no]);
-                    if (n > x.length) { slideIndex[no] = 1 }
-                    if (n < 1) { slideIndex[no] = x.length }
-                    for (i = 0; i < x.length; i++) {
-                        x[i].style.display = "none";
-                    }
-                    x[slideIndex[no] - 1].style.display = "block";
-                }
+    showSlides(1, 1);
+    function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+    }
+    function showSlides(n, no) {
+        var i;
+        var x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) { slideIndex[no] = 1 }
+        if (n < 1) { slideIndex[no] = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex[no] - 1].style.display = "block";
+    }
 </script>

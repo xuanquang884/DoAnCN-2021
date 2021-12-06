@@ -1,0 +1,233 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebTimKiemPhongTro.Models.TinDang>
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Tìm kiếm</h1>
+            <ul class="breadcrumbs">
+                <li><a href="/Home/Home">Trang chủ</a></li>
+                <li class="active">Tìm kiếm</li>
+                <li class="active">@compact(ViewBag.CurrentFilter) @compact(ViewBag.CurrentQuan) @compact(@ViewBag.CurrentLoai) @compactint(ViewBag.CurrentGia)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+<!-- properties list rightside start -->
+<div class="properties-list-rightside content-area-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                @{
+                    if (Model.Count == 0)
+                    {
+
+                        <h3 class="text-center"> Không tìm thấy kết quả phù hợp</h3>
+
+                    }
+
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+
+                            <div class="property-box-5">
+                                <div class="row">
+                                    @{ var iamge = item.Image.Split(','); }
+                                    <div class="col-lg-5 col-md-5 col-pad">
+                                        <div class="property-thumbnail">
+                                            <a href="@Url.Action("Item", "Details", new { id = item.MaTin })" class="property-img">
+                                                <div class="listing-badges">
+                                                    @{
+                                                        if (item.Loai.MaLoai == 1)
+                                                        {
+                                                            <span class="featured">Tin Vip</span>
+                                                        }
+                                                        else
+                                                        {
+
+                                                        }
+
+                                                    }
+
+                                                </div>
+                                                <div class="price-ratings-box">
+                                                    <p class="price">
+                                                        @Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng
+                                                    </p>
+                                                    <div class="ratings">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <img src="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" alt="property-box-5" class="img-fluid">
+                                            </a>
+                                            <div class="property-overlay">
+                                                <a href="@Url.Action("Item", "Details", new { id = item.MaTin })" class="overlay-link">
+                                                    <i class="fa fa-link"></i>
+                                                </a>
+                                                <div class="property-magnify-gallery">
+                                                    <a href="~/Content/assets/img/uploadimage/@iamge.FirstOrDefault()" class="overlay-link">
+                                                        <i class="fa fa-expand"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 align-self-center col-pad">
+                                        <div class="detail">
+                                            <!-- title -->
+                                            <h1 class="title">
+                                                <a href="properties-details.html">@truncate(item.TieuDe, 20)</a>
+                                            </h1>
+                                            <!-- Location -->
+                                            <div class="location">
+                                                <a href="properties-details.html">
+                                                    <i class="fa fa-map-marker"></i>@item.DiaChi
+                                                </a>
+                                            </div>
+                                            <!-- Paragraph -->
+                                            <p>@truncate(@item.MoTa, 50)</p>
+                                            <!--  Facilities list -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <div class="pagination-box hidden-mb-45 text-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("search",
+                                                                          new { page, currentFilter = ViewBag.CurrentFilter, currentQuan = ViewBag.CurrentQuan, currentLoai = ViewBag.CurrentLoai, currentGia = ViewBag.CurrentGia }
+                                                                          ))
+                            </ul>
+                        </nav>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar mbl">
+                    <!-- Search area start -->
+                    <div class="widget search-area">
+                        <h5 class="sidebar-title">Advanced Search</h5>
+                        <div class="search-area-inner">
+                            <div class="search-contents ">
+                                @using (Html.BeginForm("search", "Home", new { @class = "form-inline" }, FormMethod.Get))
+                                {
+                                    <form method="GET">
+                                        <div class="form-group">
+                                            <input type="text" name="SearchString" class="search-fields sf2 fc2 text-center" placeholder="Nhập Từ Khóa...">
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="lunchBegins" class="selectpicker Quan search-fields" name="Quan" data-live-search="true" data-live-search-style="begins" title="Quận">
+                                                <option class="text-center">Quận 1</option>
+                                                <option class="text-center">Quận 2</option>
+                                                <option class="text-center">Quận 3</option>
+                                                <option class="text-center">Quận 4</option>
+                                                <option class="text-center">Quận 5</option>
+                                                <option class="text-center">Quận 6</option>
+                                                <option class="text-center">Quận 7</option>
+                                                <option class="text-center">Quận 8</option>
+                                                <option class="text-center">Quận 9</option>
+                                                <option class="text-center">Quận 10</option>
+                                                <option class="text-center">Quận 11</option>
+                                                <option class="text-center">Quận 12</option>
+                                                <option class="text-center">Quận Thủ Đức</option>
+                                                <option class="text-center">Quận Gò Vấp</option>
+                                                <option class="text-center">Quận Bình Thạnh</option>
+                                                <option class="text-center">Quận Tân Bình</option>
+                                                <option class="text-center">Quận Tân Phú</option>
+                                                <option class="text-center">Quận Phú Nhuận</option>
+                                                <option class="text-center">Quận Bình Tân</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="selectpicker search-fields show-tick form-control Loai" id="basic" title="Loại" name="Loai">
+                                                <option class="text-center">Phòng Trọ</option>
+                                                <option class="text-center">Căn hộ Chung Cư</option>
+                                                <option class="text-center">Nhà Nguyên Căn</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <select class="selectpicker " name="make"> -->
+                                            <select id="basic" title="Giá" class="selectpicker show-tick form-control search-fields" name="Gia">
+                                                <option class="text-center" value="1000000">1.000.000</option>
+                                                <option class="text-center" value="2000000">2.000.000</option>
+                                                <option class="text-center" value="3000000">3.000.000</option>
+                                                <option class="text-center" value="4000000">4.000.000</option>
+                                                <option class="text-center" value="5000000">5.000.000</option>
+                                                <option class="text-center" value="6000000">6.000.000</option>
+                                                <option class="text-center" value="7000000">7.000.000</option>
+                                                <option class="text-center" value="8000000">8.000.000</option>
+                                            </select>
+                                        </div>
+                                        <button class="search-button btn-md btn-color">Search</button>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    @helper compact(string input)
+                    {if (input != "")
+                        {
+
+                            @input<text>-</text>
+                        }
+
+                    }
+                    @helper compactint(string input)
+                    {if (input != "")
+                        {
+                            @Html.FormatValue(Int32.Parse(input), "{0:#,###}")
+
+                        }
+
+                    }
+                    @helper truncate(String input, int length)
+                    {if (input.Length < length)
+                        {
+                            @input }
+                        else
+                        {
+                            @input.Substring(0, length) <text>...</text>}
+                    }
+                    <!-- Recent posts start -->
+                    <div class="widget recent-posts">
+                        <h5 class="sidebar-title">Tin gần đây</h5>
+                        @{ var tinmoi = ViewData["TinMoi"] as IList<WebTimKiemPhongTro.Models.TinDang>; }
+                        @for (int i = 1; i < 6; i++)
+                        {
+                            var anh = tinmoi[i].Image.Split(',');
+                            <div class="media mb-4">
+                                <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})">
+                                    <img src="~/Content/assets/img/uploadimage/@anh[0]" height="50px" alt="sub-property">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    <h5>
+                                        <a href="@Url.Action("Item","Details",new { id=tinmoi[i].MaTin})"> @truncate(tinmoi[i].TieuDe, 20) </a>
+                                    </h5>
+                                    <p>@Html.FormatValue(tinmoi[i].GiaTien, "{0:#,###}") VND/Tháng</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- properties list rightside end -->
