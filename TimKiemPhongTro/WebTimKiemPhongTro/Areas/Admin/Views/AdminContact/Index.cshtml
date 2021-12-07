@@ -51,8 +51,9 @@
                                     @Html.DisplayFor(modelItem => item.Ngaytao)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                    <a class="text-danger" onclick="location.href='@Url.Action("Details", "AdminContact", new { id = item.id })'"><i class="fas fa-pencil-alt"></i></a>
+                                    <a class="text-info" onclick="location.href='@Url.Action("Delete", "AdminContact", new { id = item.id })'"><i class="far fa-trash-alt"></i></a>
+
                                 </td>
                             </tr>
                         }

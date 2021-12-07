@@ -5,42 +5,68 @@
 }
 
 
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 
-@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
-            </div>
-        </div>
-    }*@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!-- Contact section start -->
+<hr />
+    <div class="contact-section" style="background-color:white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="login-inner-form">
+                        <div class="details" style="border: solid 2px;border-radius:10px;">
+                            <a href="index.html">
+                                <img src="~/assets/img/logos/black-logo.png" alt="logo">
+                            </a>
+                            <h3>Tạo Tài Khoản Mới</h3>
+                            <form action="index.html" method="GET">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-text", name = "fullname", placeholder = "Tên" })
+                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger " })
 
-<div class="register-area" style="background-color: rgb(249, 249, 249);">
-    <div class="container">
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-text", name = "fullname", placeholder = "Địa chỉ Email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control input-text", placeholder = "Số điện thoại" })
+                                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
 
-        <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-text", name = "Password", placeholder = "Mật khẩu" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-text", name = "fullname", placeholder = "Nhập lại mật khẩu" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="btn-md btn-theme btn-block">Đăng kí</button>
+                                </div>
+                                <br /><span>Đã có tài khoản ?<a href="/Acount/Login"> Đăng nhập ở đây</a></span>
+                            </form>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact section end -->
+}
+
+@*    <div class="register-area" style="background-color: rgb(249, 249, 249);">
+        <div class="container">
+
+            <div class="col-md-6">
                 <div class="box-for overflow">
                     <div class="col-md-12 col-xs-12 register-blocks" style="margin-left: 45px">
                         <h2>Tạo Tài Khoản Mới : </h2>
@@ -104,23 +130,23 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-10">
-                                        <input type="submit" class="btn btn-default" value="Đăng Ký" />
+                                    <input type="submit" class="btn btn-default" value="Đăng Ký" />
                                 </div>
                             </div>
-                         }
+                        }
                     </div>
-                            
+
                 </div>
-         </div>
-        <div class="col-md-6">
-            <img src="~/Content/assets/img/Logonhatro.jpg" style="height:550px; width: 700px "/>
+            </div>
+            <div class="col-md-6">
+                <img src="~/Content/assets/img/Logonhatro.jpg" style="height:550px; width: 700px " />
+            </div>
+
+
         </div>
+    </div>*@
 
 
-    </div>
-</div>
-
-
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

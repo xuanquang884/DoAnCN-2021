@@ -4,88 +4,142 @@
     ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 
-<div class="page-head">
-    <div class="container">
-        <div class="row">
-            <div class="page-head-content">
-                <h1 class="page-title">Tạo Tài Khoản Mới / Đăng Nhập </h1>
+    <!-- Contact section start -->
+    <div class="contact-section" style="background-color:white;" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="login-inner-form" style="border: solid 2px;border-radius:10px;">
+                        <div class="details">
+                            <a href="index.html">
+                                <img src="~/assets/img/logos/black-logo.png" alt="logo">
+                            </a>
+                            <h3>Đăng nhập tài khoản của bạn</h3>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <form>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email Address" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="checkbox clearfix">
+                                    <div class="form-check checkbox-theme">
+                                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "orm-check-input", @id = "rememberMe" })
+                                        <label class="form-check-label" for="rememberMe">
+                                            Nhớ tài khoản
+                                        </label>
+                                    </div>
+                                    @Html.ActionLink("Quên mật khẩu", "ForgotPassword")
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="btn-md btn-theme btn-block">Đăng nhập</button>
+                                </div>
+                            </form>
+                            <ul class="social-list clearfix">
+                                <li>@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })</li>
+                                @*<li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>*@
+
+                            </ul>
+                            <br /><span>Không có tài khoản? @Html.ActionLink("Đăng ký ngay", "Register")</span>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End page header -->
-<!-- register-area -->
-<div class="register-area" style="background-color: rgb(249, 249, 249);">
-    <div class="container">
-        <div class="col-md-6" >
-            <div class="box-for overflow">
-                <div class="col-md-12 col-xs-12 login-blocks" style="margin-left: 45px">
-                    <h2>Đăng Nhập : </h2>
-                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
+}
+    <!-- Contact section end -->
+    <!--<div class="page-head">
+        <div class="container">
+            <div class="row">
+                <div class="page-head-content">
+                    <h1 class="page-title">Tạo Tài Khoản Mới / Đăng Nhập </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End page header -->
+    <!-- register-area -->
+    <!--<div class="register-area" style="background-color: rgb(249, 249, 249);">
+        <div class="container">
+            <div class="col-md-6" >
+                <div class="box-for overflow">
+                    <div class="col-md-12 col-xs-12 login-blocks" style="margin-left: 45px">
+                        <h2>Đăng Nhập : </h2>
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
 
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
 
-                            <div class="col-md-10">
-                                @Html.LabelFor(m => m.Email)
+                                <div class="col-md-10">
+                                    @Html.LabelFor(m => m.Email)
 
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(m => m.Password)
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <div class="checkbox">
-                                    @Html.CheckBoxFor(m => m.RememberMe)
-                                    @Html.LabelFor(m => m.RememberMe)
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div>
-                        <div style="margin-left: 300px">
-                            <button  type="submit" class="btn btn-default"> Đăng Nhập</button>
-                        </div>
-                        <p>
-                            @Html.ActionLink("Đăng ký", "Register")<br />
-                            @Html.ActionLink("Quên mật khẩu", "ForgotPassword")
-                        </p>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(m => m.Password)
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-left: 300px">
+                                <button  type="submit" class="btn btn-default"> Đăng Nhập</button>
+                            </div>
+                            <p>
+                                @Html.ActionLink("Đăng ký", "Register")<br />
+                                @Html.ActionLink("Quên mật khẩu", "ForgotPassword")
+                            </p>
 
 
-                    }
-                    @*<div class="col-md-4">
-                    <section id="socialLoginForm ">
-                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                    </section>
-                        </div>*@
-                    <h2>Đăng Nhập Bằng:  </h2>
-                    <div>
+                        }-->
+    @*<div class="col-md-4">
+        <section id="socialLoginForm ">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+            </div>*@
+   @* <h2>Đăng Nhập Bằng:  </h2>
+    <div>
 
-                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
 
-                    </div>
-
-
-
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-6">
-            <img src="~/Content/assets/img/Logonhatro.jpg" style="height:550px; width: 700px "/>
-        </div>
-        </div>
     </div>
 
 
+
+    </div>
+
+    </div>
+    </div>
+    <div class="col-md-6">
+        <img src="~/Content/assets/img/Logonhatro.jpg" style="height:550px; width: 700px " />
+    </div>
+    </div>
+    </div>-->
+
+*@
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryval")
 }

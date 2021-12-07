@@ -5,55 +5,41 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutShare.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card" style="padding:30px">
+                    <div>
+                        <h4 class="text-center">Chi tiết tin</h4>
+                        <hr />
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th> @Html.DisplayNameFor(model => model.Hoten)</th>
+                                    <th> @Html.DisplayNameFor(model => model.Gmail)</th>
+                                    <th> @Html.DisplayNameFor(model => model.Phone)</th>
+                                    <th> @Html.DisplayNameFor(model => model.NoiDung)</th>
+                                    <th> @Html.DisplayNameFor(model => model.Ngaytao)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> @Html.DisplayFor(model => model.Hoten)</td>
+                                    <td> @Html.DisplayFor(model => model.Gmail)</td>
+                                    <td> @Html.DisplayFor(model => model.Phone)</td>
+                                    <td> @Html.DisplayFor(model => model.NoiDung)</td>
+                                    <td> @Html.DisplayFor(model => model.Ngaytao)</td>
+                                </tr>
+                            </tbody>
 
-<div>
-    <h4>Lien_He</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Hoten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hoten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gmail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NoiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NoiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ngaytao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ngaytao)
-        </dd>
-
-    </dl>
+                        </table>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Trở về", "Index")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -18,24 +18,28 @@
     button {
         color: white;
     }
-    h6{margin-left:20px}
+
+    h6 {
+        margin-left: 20px
+    }
 </style>
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Thông Tin Cá Nhân</h1>
+            <ul class="breadcrumbs">
+                <li><a href="/Home/Home">Trang chủ</a></li>
+                <li class="active">Hồ sơ của tôi</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
 
 @foreach (var item in Model)
 {
-    <!-- Sub banner start -->
-    <div class="sub-banner">
-        <div class="container">
-            <div class="breadcrumb-area">
-                <h1>Thông Tin Cá Nhân</h1>
-                <ul class="breadcrumbs">
-                    <li><a href="/Home/Home">Trang chủ</a></li>
-                    <li class="active">Hồ sơ của tôi</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Sub banner end -->
     <!-- User page start -->
     <div class="user-page content-area-7 submit-property">
         <div class="container">
@@ -75,7 +79,7 @@
                             </h6>
                             <ul>
                                 <li>
-                                    <a href="/User/ProfileUser" >
+                                    <a href="/User/ProfileUser">
                                         <i class="flaticon-user"></i>Thông tin cá nhân
                                     </a>
                                 </li>
@@ -148,7 +152,7 @@
                     <div class="pagination-box text-center">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi", new { @class = "page-link", page  }))
+                                @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi", new { @class = "page-link", page }))
                             </ul>
                         </nav>
                     </div>
@@ -156,33 +160,32 @@
             </div>
         </div>
     </div>
- }
-    <!-- property area -->
-    <!--<div class="content-area recent-property" style="background-color: #FFF;">
-        <div class="container">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
-                        <div class="row">
-                            <div id="list-type" class="proerty-th-list">
-                                <div class="col-md-4 p0">
-                                    <div class="box-two proerty-item">
-                                        @{ var image = item.Image.Split(','); }
-                                        <div class="item-thumb">
-                                            <a href="@Url.Action("Item", "Details", new { id = item.MaTin })"><img src="~/Content/assets/img/uploadimage/@image.FirstOrDefault()"></a>
-                                        </div>
-                                        <div class="item-entry overflow">
-                                            <h5><a href="property-1.html">@truncate(item.TieuDe, 50)</a></h5>
-                                            <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Diện tích :</b>@item.DienTich m </span>
-                                            <span class="proerty-price pull-right"> @Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
-                                            <br /> <img src="~/Content/assets/img/icon/addresssmal.png">  @truncate(item.DiaChi, 28)<br />
-                                            <div class="property-icon" style="margin-top:80px">
-                                                <div class="dealer-action pull-right">
-                                                    @Html.ActionLink("Edit", "EditTindang", new { id = item.MaTin })
-                                                    @Html.ActionLink("Delete", "Delete", new { id = item.MaTin })
-                                                </div>
+}
+<!-- property area -->
+<!--<div class="content-area recent-property" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
+                    <div class="row">
+                        <div id="list-type" class="proerty-th-list">
+                            <div class="col-md-4 p0">
+                                <div class="box-two proerty-item">
+                                    @{ var image = item.Image.Split(','); }
+                                    <div class="item-thumb">
+                                        <a href="@Url.Action("Item", "Details", new { id = item.MaTin })"><img src="~/Content/assets/img/uploadimage/@image.FirstOrDefault()"></a>
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5><a href="property-1.html">@truncate(item.TieuDe, 50)</a></h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Diện tích :</b>@item.DienTich m </span>
+                                        <span class="proerty-price pull-right"> @Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
+                                        <br /> <img src="~/Content/assets/img/icon/addresssmal.png">  @truncate(item.DiaChi, 28)<br />
+                                        <div class="property-icon" style="margin-top:80px">
+                                            <div class="dealer-action pull-right">
+                                                @Html.ActionLink("Edit", "EditTindang", new { id = item.MaTin })
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.MaTin })
                                             </div>
                                         </div>
                                     </div>
@@ -190,42 +193,42 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="col-md-3 p0 padding-top-40">
-                        <div class="row">
-                            <div class="blog-asside-right">
-                                <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">THÔNG TIN CÁC BÀI ĐĂNG CỦA BẠN</h3>
-                                    </div>
-                                    <div class="panel-body search-widget">
-
-                                    </div>
+                <div class="col-md-3 p0 padding-top-40">
+                    <div class="row">
+                        <div class="blog-asside-right">
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">THÔNG TIN CÁC BÀI ĐĂNG CỦA BẠN</h3>
                                 </div>
+                                <div class="panel-body search-widget">
 
-                                <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">@item.NgayDang</h3>
-                                    </div>
-                                    <div class="panel-body recent-property-widget">
+                                </div>
+                            </div>
 
-                                    </div>
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">@item.NgayDang</h3>
+                                </div>
+                                <div class="panel-body recent-property-widget">
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="pull-right">
-                Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
-                @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi",
-                    new { page }
-                    ))
-            </div>
+                </div>
+            }
         </div>
     </div>
-    }-->
-
+    <div class="col-md-12">
+        <div class="pull-right">
+            Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi",
+                new { page }
+                ))
+        </div>
+    </div>
+</div>
+}-->
