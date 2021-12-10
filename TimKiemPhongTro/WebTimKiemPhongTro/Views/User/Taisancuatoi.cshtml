@@ -2,7 +2,8 @@
 @*@model IEnumerable<WebTimKiemPhongTro.Models.AspNetUsers>*@
 @using PagedList;
 @using PagedList.Mvc;
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @{ ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_LayoutMain.cshtml"; }
 @helper truncate(String input, int length)
@@ -37,97 +38,75 @@
     </div>
 </div>
 <!-- Sub banner end -->
+<!-- User page start -->
+<div class="user-page content-area-7 submit-property">
+    <div class="container">
+        <div class="row">
 
-@foreach (var item in Model)
-{
-    <!-- User page start -->
-    <div class="user-page content-area-7 submit-property">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="user-profile-box mrb">
-                        <!--header -->
-                        <div class="header clearfix">
-                            <h2>@item.AspNetUsers.Name</h2>
-                            @{
-                                if (@item.AspNetUsers.Image == null)
-                                {
-                                    <img class="img-fluid profile-img" src="~/assets/img/149071.png" alt="Ảnh người dùng">
-                                }
-                                else
-                                {
-                                    <img class="img-fluid profile-img" src="~/Content/assets/img/uploadimage/@item.AspNetUsers.Image" alt="Ảnh người dùng">
-                                }
-                            }
-                        </div>
-                        <!-- Detail -->
-                        <div class="detail clearfix">
-                            <h6><span style="font-weight:900"> Tên người dùng:</span> @item.AspNetUsers.Name</h6>
-                            <h6>
-                                @{
-                                    if (item.AspNetUsers.ViTien == 0)
-                                    {
-                                        <span style="font-weight:900"> Số dư:</span><span> 0 /VND</span>
-                                    }
-                                    else
-                                    {
-                                        <span style="font-weight:900"> Số dư:</span><span> @Html.FormatValue(item.AspNetUsers.ViTien, "{0:#,###}")</span>
-                                        <span>/VNĐ</span>
-                                    }
-                                }
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="user-profile-box mrb">
+                    <!--header -->
+                    <div class="header clearfix">
+                        <h2>Emma Connor</h2>
+                        <h4>Creative Director</h4>
+                        <img src="~/assets/img/149071.png" alt="avatar" class="img-fluid profile-img">
+                    </div>
+                    <!-- Detail -->
+                    <div class="detail clearfix">
+                        <ul>
+                            <li>
+                                <a href="/User/ProfileUser">
+                                    <i class="flaticon-user"></i>Thông tin cá nhân
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/User/Taisancuatoi">
+                                    <i class="flaticon-house"></i>Quản lý tin đăng
+                                </a>
+                            </li>
 
-                            </h6>
-                            <ul>
-                                <li>
-                                    <a href="/User/ProfileUser">
-                                        <i class="flaticon-user"></i>Thông tin cá nhân
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/User/Taisancuatoi">
-                                        <i class="flaticon-house"></i>Quản lý tin đăng
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/User/DangTin">
-                                        <i class="flaticon-add"></i>Đăng tin mới
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/Manage/ChangePassword">
-                                        <i class="flaticon-locked-padlock"></i>Đổi mật khẩu
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:document.getElementById('logoutForm').submit()">
-                                        <i class="flaticon-logout"></i>Thoát
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                            <li>
+                                <a href="/User/DangTin">
+                                    <i class="flaticon-add"></i>Đăng tin mới
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Manage/ChangePassword">
+                                    <i class="flaticon-locked-padlock"></i>Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                    <i class="flaticon-logout"></i>Thoát
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="my-properties">
-                        @{ var image = item.Image.Split(','); }
-                        <table class="manage-table">
-                            <thead>
-                                <tr>
-                                    <th>Favorited Property</th>
-                                    <th></th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="my-properties">
+                    <table class="manage-table">
+                        <thead>
+                            <tr>
+                                <th>Thông tin</th>
+                                <th></th>
+                                <th>Ngày đăng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model)
+                        {
                             <tbody class="responsive-table">
                                 <tr>
+                                    @{ var image = item.Image.Split(','); }
                                     <td class="listing-photoo">
-                                        <img alt="my-properties-3" src="~/Content/assets/img/uploadimage/@image.FirstOrDefault()" class="img-fluid">
+                                        <img alt="my-properties-3" src="~/Content/assets/img/uploadimage/@image.FirstOrDefault()" style="width:160px;height:108px" class="img-fluid">
                                     </td>
                                     <td class="title-container">
                                         <h5><a href="@Url.Action("Item", "Details", new { id = item.MaTin })">@truncate(item.TieuDe, 25)</a></h5>
-                                        <h6>@Html.FormatValue(@item.GiaTien, "{0:#,###}")</h6>
+                                        <h6><b>Giá:</b> @Html.FormatValue(@item.GiaTien, "{0:#,###}")</h6>
                                         <p><i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i>  @truncate(item.DiaChi, 28) </p>
                                     </td>
                                     <td class="date">
@@ -145,90 +124,32 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        }
+                    </table>
 
-                    </div>
-                    <br />
-                    <div class="pagination-box text-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi", new { @class = "page-link", page }))
-                            </ul>
-                        </nav>
-                    </div>
+                </div>
+                <br />
+                <style>
+                    .pagination {
+                        display: inline-block;
+                    }
+
+                        .pagination a {
+                            color: black;
+                            float: left;
+                            padding: 8px 16px;
+                            text-decoration: none;
+                        }
+                </style>
+                <div class="pagination-box text-center">
+                    <nav aria-label="Page navigation example">
+
+                        @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi", new { @class = "page-link", page }))
+
+                    </nav>
                 </div>
             </div>
-        </div>
-    </div>
-}
-<!-- property area -->
-<!--<div class="content-area recent-property" style="background-color: #FFF;">
-    <div class="container">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
-                    <div class="row">
-                        <div id="list-type" class="proerty-th-list">
-                            <div class="col-md-4 p0">
-                                <div class="box-two proerty-item">
-                                    @{ var image = item.Image.Split(','); }
-                                    <div class="item-thumb">
-                                        <a href="@Url.Action("Item", "Details", new { id = item.MaTin })"><img src="~/Content/assets/img/uploadimage/@image.FirstOrDefault()"></a>
-                                    </div>
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html">@truncate(item.TieuDe, 50)</a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Diện tích :</b>@item.DienTich m </span>
-                                        <span class="proerty-price pull-right"> @Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
-                                        <br /> <img src="~/Content/assets/img/icon/addresssmal.png">  @truncate(item.DiaChi, 28)<br />
-                                        <div class="property-icon" style="margin-top:80px">
-                                            <div class="dealer-action pull-right">
-                                                @Html.ActionLink("Edit", "EditTindang", new { id = item.MaTin })
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.MaTin })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-
-                <div class="col-md-3 p0 padding-top-40">
-                    <div class="row">
-                        <div class="blog-asside-right">
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">THÔNG TIN CÁC BÀI ĐĂNG CỦA BẠN</h3>
-                                </div>
-                                <div class="panel-body search-widget">
-
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">@item.NgayDang</h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="pull-right">
-            Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
-            @Html.PagedListPager(Model, page => Url.Action("Taisancuatoi",
-                new { page }
-                ))
         </div>
     </div>
 </div>
-}-->

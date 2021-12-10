@@ -359,7 +359,7 @@ namespace WebTimKiemPhongTro.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Image,PasswordCon,ViTien,Facebook,Twitter,Website,Fax")] AspNetUsers aspNetUsers)
+        public ActionResult EditProfile([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Name,Image,PasswordCon,ViTien,Facebook,Zalo")] AspNetUsers aspNetUsers)
         {
             try
             {

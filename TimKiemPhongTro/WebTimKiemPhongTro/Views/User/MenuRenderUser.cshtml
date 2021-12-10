@@ -1,0 +1,105 @@
+﻿@model WebTimKiemPhongTro.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "ProfileUser";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<style>
+    button, a {
+        color: white;
+    }
+</style>
+
+
+    <!-- Sub banner start -->
+    <div class="sub-banner">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <h1>Thông Tin Cá Nhân</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="/Home/Home">Trang chủ</a></li>
+                    <li class="active">Hồ sơ của tôi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Sub banner end -->
+
+    <!-- User page start -->
+    <div class="user-page content-area-7 submit-property">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="user-profile-box mrb">
+                            <!--header -->
+                            <div class="header clearfix">
+                                <h2>@Model.Name</h2>
+                                @{
+                                    if (@Model.Image == null)
+                                    {
+                                        <img class="img-fluid profile-img" src="~/assets/img/149071.png" alt="Ảnh người dùng">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-fluid profile-img" src="~/Content/assets/img/uploadimage/@Model.Image" alt="Ảnh người dùng">
+                                    }
+                                }
+                            </div>
+                            <!-- Detail -->
+                            <div class="detail clearfix">
+                                <h6><span style="font-weight:900"> Tên người dùng:</span> @Model.Name</h6>
+                                <h6>
+                                    @{
+                                        if (Model.ViTien == 0)
+                                        {
+                                            <span style="font-weight:900"> Số dư:</span><span> 0 /VND</span>
+                                        }
+                                        else
+                                        {
+                                            <span style="font-weight:900"> Số dư:</span><span> @Html.FormatValue(@Model.ViTien, "{0:#,###}")</span>
+                                            <span>/VNĐ</span>
+                                        }
+                                    }
+
+                                </h6>
+                                <ul>
+                                    <li>
+                                        <a href="/User/ProfileUser">
+                                            <i class="flaticon-user"></i>Thông tin cá nhân
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/User/Taisancuatoi">
+                                            <i class="flaticon-house"></i>Quản lý tin đăng
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/User/DangTin">
+                                            <i class="flaticon-add"></i>Đăng tin mới
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Manage/ChangePassword">
+                                            <i class="flaticon-locked-padlock"></i>Đổi mật khẩu
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                                            <i class="flaticon-logout"></i>Thoát
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                                        }
+                    @RenderBody()
+                </div>
+        </div>
+    </div>
+    <!-- User page end -->
+
+
+
+

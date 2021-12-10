@@ -5834,6 +5834,16 @@ footer.footer:before {
 }
 
 /** PAGINATION STARTED **/
+.pagination {
+    display: inline-block;
+}
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
 .pagination-box {
     margin-bottom: 25px;
 }

@@ -144,13 +144,13 @@
                         </div>
                         <div class="detail">
                             <h1 class="title">
-                                <a href="@Url.Action("Item", "Details", new { id = item.MaTin })">@truncate(item.TieuDe, 28)</a>
+                                <a href="@Url.Action("Item", "Details", new { id = item.MaTin })">@truncate(item.TieuDe, 25)</a>
                             </h1>
                             <div class="location">
                                 <span class="pull-left"><b> Diện tích :</b> @item.DienTich m2  </span>  <br />
                                 <span><b> Giá Phòng : </b>@Html.FormatValue(@item.GiaTien, "{0:#,###}") VND/Tháng</span><br />
                                 <a href="@Url.Action("Item", "Details", new { id = item.MaTin })">
-                                    <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i> @truncate(item.DiaChi, 28)
+                                    <i class="flaticon-facebook-placeholder-for-locate-places-on-maps"></i> @truncate(item.DiaChi, 25)
                                 </a>
 
                             </div>
@@ -197,9 +197,9 @@
                 <div class="pagination-box text-center">
                     <nav aria-label="Page navigation example">
                         @*Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount*@
-                        <ul class="pagination">
-                            @Html.PagedListPager(Model, page => Url.Action("home", new { @class = "page-link", page }))
-                        </ul>
+
+                        @Html.PagedListPager(Model, page => Url.Action("home", new { page, @class = "page-link", }))
+
                     </nav>
                 </div>
             </div>
@@ -207,6 +207,7 @@
     </div>
 </div>
 <!-- Properties list fullwidth end -->
+
 <!-- services 3 start -->
 <div class="services-3 content-area-20 bg-white">
     <div class="container">

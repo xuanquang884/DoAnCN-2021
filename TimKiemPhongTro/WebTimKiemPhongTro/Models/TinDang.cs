@@ -62,5 +62,6 @@
         public string Facebook;
         public string Zalo;
         public List<Loai> ListLoaiTin;
+        public List<AspNetUsers> Listuser;
     }
 }
